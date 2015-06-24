@@ -37,12 +37,20 @@
     
     
     _linechart.highlightEnabled = YES;
-    _linechart.dragEnabled = YES;
+    _linechart.dragEnabled = NO;
     [_linechart setScaleXEnabled:YES];
-    [_linechart setScaleYEnabled:NO];
+    [_linechart setScaleYEnabled:YES];
+    _linechart.drawGridBackgroundEnabled = NO;
+    _linechart.scaleXEnabled = YES;
+    _linechart.pinchZoomEnabled = YES;
+    
+    
+    _linechart.highlightEnabled = YES;
+    _linechart.dragEnabled = YES;
+    [_linechart setScaleEnabled:YES];
     _linechart.drawGridBackgroundEnabled = NO;
     _linechart.pinchZoomEnabled = NO;
-
+    [_linechart setScaleYEnabled:NO];
     
     _linechart.legend.form = ChartLegendFormLine;
     _linechart.legend.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f];
@@ -52,10 +60,10 @@
 
     ChartXAxis *xAxis = _linechart.xAxis;
     xAxis.labelPosition = XAxisLabelPositionBottom;
-    xAxis.labelFont = [UIFont systemFontOfSize:8.f];
+    xAxis.labelFont = [UIFont systemFontOfSize:9.f];
     xAxis.labelTextColor = UIColor.whiteColor;
     xAxis.drawGridLinesEnabled = NO;
-    xAxis.spaceBetweenLabels = 1.0;
+    xAxis.spaceBetweenLabels = 6.0;
     
     
     ChartYAxis *leftAxis = _linechart.leftAxis;
@@ -68,7 +76,7 @@
     leftAxis.startAtZeroEnabled = NO;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
     leftAxis.drawLimitLinesBehindDataEnabled = NO;
-    leftAxis.spaceTop = 3.25;
+    leftAxis.spaceTop = 3.4;
     
     _linechart.rightAxis.enabled = NO;
     
@@ -93,7 +101,7 @@
     
     for (int i = 0; i < count; i++)
     {
-       NSString *abc = [NSString stringWithFormat:@"%d", i*10];
+       NSString *abc = [NSString stringWithFormat:@"%d", i];
 
        [xVals addObject: abc];
     
@@ -183,6 +191,98 @@
     _linechart.data = data;
 }
 
+
+- (void)setDataCountlinechart:(int)count range:(double)range sessions:(NSArray*)sessions
+{
+    
+    NSMutableArray *xVals = [[NSMutableArray alloc] init];
+    
+    
+    for (int i = 0; i <= 30; i++)
+    {
+//        Session *session = [sessions objectAtIndex:i];
+//        NSInteger seconds = [session.sec intValue];
+//        if(seconds>1800){
+//            seconds = 1700;
+//        }
+//        NSLog(@"Minutes %ld",seconds/60);
+        NSString *abc = [NSString stringWithFormat:@"%d", i];
+        
+        [xVals addObject: abc];
+        
+    }
+    
+    NSMutableArray *yVals = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        Session *session = [sessions objectAtIndex:i];
+        NSInteger val = [session.channel_1 intValue];
+        
+        NSInteger seconds = [session.sec intValue];
+        if(seconds>1800){
+            seconds = 1700;
+        }
+        NSInteger min = seconds/60;
+        
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:min]];
+    }
+    
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"Abdominal Pressure"];
+    set1.axisDependency = AxisDependencyLeft;
+    [set1 setColor:UIColor.whiteColor];
+    [set1 setCircleColor:UIColor.orangeColor];
+    set1.lineWidth = 2.0;
+    set1.circleRadius = 3.0;
+    set1.fillAlpha = 65/255.0;
+    set1.fillColor = UIColor.whiteColor;
+    set1.highlightColor = UIColor.orangeColor;
+    set1.drawCircleHoleEnabled = NO;
+    set1.drawFilledEnabled = YES;
+    
+    NSMutableArray *yVals2 = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        Session *session = [sessions objectAtIndex:i];
+        NSInteger val = [session.channel_2 intValue];
+        
+        NSInteger seconds = [session.sec intValue];
+        if(seconds>1800){
+            seconds = 1700;
+        }
+        NSInteger min = seconds/60;
+        
+        NSLog(@"Minutes %ld",(long)min);
+        
+        [yVals2 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:min]];
+    }
+    
+    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"Body Pressure"];
+    set2.axisDependency = AxisDependencyLeft;
+    [set2 setColor:UIColor.orangeColor];
+    [set2 setCircleColor:UIColor.whiteColor];
+    set2.lineWidth = 2.0;
+    set2.circleRadius = 3.0;
+    set2.fillAlpha = 65/255.0;
+    set2.fillColor = UIColor.redColor;
+    set2.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
+    set2.drawCircleHoleEnabled = NO;
+    set2.drawFilledEnabled = YES;
+    
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [dataSets addObject:set2];
+    [dataSets addObject:set1];
+    
+    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
+    [data setValueTextColor:UIColor.whiteColor];
+    [data setValueFont:[UIFont systemFontOfSize:9.f]];
+    
+    _linechart.data = data;
+}
+
+
+
 - (IBAction)changevalue:(id)sender {
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
     [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
@@ -217,8 +317,10 @@
         NSArray* sessions =[RMMapper arrayOfClass:[Session class] fromArrayOfDictionary:values];
         
         NSLog(@"sessions %@", sessions);
+        
+        [self setDataCountlinechart:(int)[sessions count] range:5 sessions:sessions];
+        
     }];
-
 }
 
 - (id)eventDataWithString:(NSString *)string

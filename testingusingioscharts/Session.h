@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *user_id;
 @property (nonatomic, strong) NSString *session_id;
-@property (nonatomic, strong) NSNumber *channel_1;
-@property (nonatomic, strong) NSNumber *channel_2;
-@property (nonatomic, strong) NSNumber *sec;
+@property (nonatomic, strong) NSString *channel_1;
+@property (nonatomic, strong) NSString *channel_2;
+@property (nonatomic, strong) NSString *sec;
 @end
