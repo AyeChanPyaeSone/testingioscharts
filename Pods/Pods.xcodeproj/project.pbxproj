@@ -1,0 +1,787 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		065CE00F57563CEE36E6987C /* RMMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C020E15FBF6ED21B951E64 /* RMMapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2477DB434C2B876E08327861 /* NSObject+RMCopyable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337D619A2E6B0D9EE818CD1 /* NSObject+RMCopyable.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		34D883BAEB63E1CBF1D4D897 /* WebSocketRailsDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 012BA015A26328693FEFA67C /* WebSocketRailsDispatcher.m */; };
+		3E3E3FFB8EE8F64929D3250A /* WebSocketRailsEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F85EFC8D538C7D64877CCBFE /* WebSocketRailsEvent.h */; };
+		424EDE394897E4537AB16554 /* NSObject+RMArchivable.h in Headers */ = {isa = PBXBuildFile; fileRef = BA48940819FA2CD96459BEFE /* NSObject+RMArchivable.h */; };
+		45315BB8769F2D9BE3F47CC0 /* Pods-WebSocketRails-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE45184AFF9BB8D38658EA07 /* Pods-WebSocketRails-dummy.m */; };
+		46DA3B749CAE9FA6DCBED0C1 /* Pods-RMMapper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E33EDA4168AF3A07B6058A92 /* Pods-RMMapper-dummy.m */; };
+		5D42923B13CE552AC2F27618 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 6883B34917D108E16F269C3D /* base64.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6347FE8D93282E2C29747421 /* NSData+SRB64Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 126FA871205C74D6C13D62CC /* NSData+SRB64Additions.h */; };
+		66492A2CEC16A63FE91926BE /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F945F866F5BD5F3A34BCE625 /* NSData+SRB64Additions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6FA02AD78ADB41AA5BFB641F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99604D2420F199A91C1589E4 /* Foundation.framework */; };
+		70174717013674BC92FA7A53 /* WebSocketRailsChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B9C7B74277CEFB403CF38F /* WebSocketRailsChannel.h */; };
+		726B163C545CCADB8863D3B4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DD5A6E087FC6BB82248E98 /* Security.framework */; };
+		8133658FEAF9B673878B6F4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99604D2420F199A91C1589E4 /* Foundation.framework */; };
+		8B8F9C098A10618149D19BE0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A406A5BD475BFBD5F9974E /* CFNetwork.framework */; };
+		8F9429642C9368F73C3DC91B /* Pods-SocketRocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7405CA7F4257378927C4EE /* Pods-SocketRocket-dummy.m */; };
+		91CDC9AA89AED995D7F1EC74 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A00C64F977E71834935358 /* Pods-dummy.m */; };
+		9DA4D410DC6B3F62723360A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99604D2420F199A91C1589E4 /* Foundation.framework */; };
+		B4C853AAED56042DBAA5FF25 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AF56FA6D982399E3692B2A2 /* SRWebSocket.h */; };
+		B74CDB5205223DE3DA7BADF2 /* WebSocketRailsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7B30E799D991046FCD579 /* WebSocketRailsConnection.m */; };
+		BA437891CDC911A5CBCD6078 /* NSUserDefaults+RMSaveCustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D93BCDD7E506E533F5B760F /* NSUserDefaults+RMSaveCustomObject.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		C12327E0DC3F15B610E0B60E /* WebSocketRailsDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = A39AC5C4AD50B0696AAEACB0 /* WebSocketRailsDispatcher.h */; };
+		C454B6553E651AD5A9AAA1E1 /* NSObject+RMCopyable.h in Headers */ = {isa = PBXBuildFile; fileRef = C317D302AE142ECC63001BBF /* NSObject+RMCopyable.h */; };
+		C6FEDA18FCAA1EBC393ECE15 /* NSUserDefaults+RMSaveCustomObject.h in Headers */ = {isa = PBXBuildFile; fileRef = ACC426040FDC57B9C047A00A /* NSUserDefaults+RMSaveCustomObject.h */; };
+		E01D8EDBBAB8EA646B2A2C19 /* WebSocketRailsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6037200A479CCC5FA719621B /* WebSocketRailsEvent.m */; };
+		E483C43B613CE10D39F24693 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99604D2420F199A91C1589E4 /* Foundation.framework */; };
+		E729E77527DDD7FBB8FBB1A4 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CE770969540CF250F335D8A5 /* SRWebSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E8107BD676BAD77E628EE89D /* RMMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A72723FCAA26E1F2136B1E4C /* RMMapper.h */; };
+		EE4566147D37017AF957FCF0 /* NSObject+RMArchivable.m in Sources */ = {isa = PBXBuildFile; fileRef = A4686D7A7693F4D6B98E2F05 /* NSObject+RMArchivable.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F3C26A9796CBF7D809242AD4 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 67ABB6AEA61818AACE15C6FB /* base64.h */; };
+		F43F617655F26A88BBBA1E0B /* WebSocketRailsConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D43F056734D3BC8A4240CFF6 /* WebSocketRailsConnection.h */; };
+		F76C81F266F916E0BAE4873C /* WebSocketRailsChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1936DB15AF844B42C2633F37 /* WebSocketRailsChannel.m */; };
+		FD73D0FD3A486DC8182D1FB6 /* WebSocketRailsTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 30B4122722DE86350D34C20D /* WebSocketRailsTypes.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28704EAB34E1247DEA9EA960 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB391329A69ACA3D2404F0FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56CF19743D1D3D8FB6345314;
+			remoteInfo = "Pods-SocketRocket";
+		};
+		80FFBB4AAB0215D11F550C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB391329A69ACA3D2404F0FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE9F56302E5A78AC5620B32A;
+			remoteInfo = "Pods-WebSocketRails";
+		};
+		99692244B213A950E9593BF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB391329A69ACA3D2404F0FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56CF19743D1D3D8FB6345314;
+			remoteInfo = "Pods-SocketRocket";
+		};
+		B1B8B1B203E9974193AC88AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB391329A69ACA3D2404F0FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 820E43762B506BD13A70FF5B;
+			remoteInfo = "Pods-RMMapper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		012BA015A26328693FEFA67C /* WebSocketRailsDispatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebSocketRailsDispatcher.m; path = "WebSocketRails-iOS/WebSocketRailsDispatcher.m"; sourceTree = "<group>"; };
+		0278DBC753124C21FF62DB37 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		029F426F7648A6C659FF3609 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		076738F03A544826FA84783B /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		126FA871205C74D6C13D62CC /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+SRB64Additions.h"; path = "SocketRocket/NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		140CB003A17CE990F689A224 /* Pods-SocketRocket-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SocketRocket-Private.xcconfig"; sourceTree = "<group>"; };
+		166DC6101E962083251A59A4 /* libPods-SocketRocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SocketRocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1936DB15AF844B42C2633F37 /* WebSocketRailsChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebSocketRailsChannel.m; path = "WebSocketRails-iOS/WebSocketRailsChannel.m"; sourceTree = "<group>"; };
+		1AF56FA6D982399E3692B2A2 /* SRWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
+		2320E46481476EA0005DB4BE /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		29CEB00F8E03CA9506B2B2F3 /* Pods-SocketRocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SocketRocket-prefix.pch"; sourceTree = "<group>"; };
+		2C1BBF44696B0FC106BC47CC /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		30B4122722DE86350D34C20D /* WebSocketRailsTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebSocketRailsTypes.h; path = "WebSocketRails-iOS/WebSocketRailsTypes.h"; sourceTree = "<group>"; };
+		49A406A5BD475BFBD5F9974E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		4F6DC6134E831DC4121B9C37 /* Pods-SocketRocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SocketRocket.xcconfig"; sourceTree = "<group>"; };
+		5F2DB89B1AB17C9EE77F5ECD /* Pods-WebSocketRails.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WebSocketRails.xcconfig"; sourceTree = "<group>"; };
+		6037200A479CCC5FA719621B /* WebSocketRailsEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebSocketRailsEvent.m; path = "WebSocketRails-iOS/WebSocketRailsEvent.m"; sourceTree = "<group>"; };
+		62D44CEBF89CAF9009798C35 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		67ABB6AEA61818AACE15C6FB /* base64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = base64.h; path = SocketRocket/base64.h; sourceTree = "<group>"; };
+		6883B34917D108E16F269C3D /* base64.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = base64.c; path = SocketRocket/base64.c; sourceTree = "<group>"; };
+		6CAB01DEB36A03E8B7BE426F /* Pods-WebSocketRails-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WebSocketRails-Private.xcconfig"; sourceTree = "<group>"; };
+		6D93BCDD7E506E533F5B760F /* NSUserDefaults+RMSaveCustomObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+RMSaveCustomObject.m"; path = "RMMapper/NSUserDefaults+RMSaveCustomObject.m"; sourceTree = "<group>"; };
+		7D7405CA7F4257378927C4EE /* Pods-SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SocketRocket-dummy.m"; sourceTree = "<group>"; };
+		8337D619A2E6B0D9EE818CD1 /* NSObject+RMCopyable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RMCopyable.m"; path = "RMMapper/NSObject+RMCopyable.m"; sourceTree = "<group>"; };
+		8D824C9EB914B7024E577298 /* Pods-RMMapper-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RMMapper-Private.xcconfig"; sourceTree = "<group>"; };
+		99604D2420F199A91C1589E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A0C020E15FBF6ED21B951E64 /* RMMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMMapper.m; path = RMMapper/RMMapper.m; sourceTree = "<group>"; };
+		A1C3F810E9323E71DFFE348E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		A39AC5C4AD50B0696AAEACB0 /* WebSocketRailsDispatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebSocketRailsDispatcher.h; path = "WebSocketRails-iOS/WebSocketRailsDispatcher.h"; sourceTree = "<group>"; };
+		A4686D7A7693F4D6B98E2F05 /* NSObject+RMArchivable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RMArchivable.m"; path = "RMMapper/NSObject+RMArchivable.m"; sourceTree = "<group>"; };
+		A72723FCAA26E1F2136B1E4C /* RMMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMMapper.h; path = RMMapper/RMMapper.h; sourceTree = "<group>"; };
+		ACC426040FDC57B9C047A00A /* NSUserDefaults+RMSaveCustomObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+RMSaveCustomObject.h"; path = "RMMapper/NSUserDefaults+RMSaveCustomObject.h"; sourceTree = "<group>"; };
+		ADC35033DFB50222797C8D34 /* Pods-WebSocketRails-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WebSocketRails-prefix.pch"; sourceTree = "<group>"; };
+		B8DD5A6E087FC6BB82248E98 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		BA48940819FA2CD96459BEFE /* NSObject+RMArchivable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RMArchivable.h"; path = "RMMapper/NSObject+RMArchivable.h"; sourceTree = "<group>"; };
+		BB0587388064B9825A8E6049 /* Pods-RMMapper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RMMapper.xcconfig"; sourceTree = "<group>"; };
+		C317D302AE142ECC63001BBF /* NSObject+RMCopyable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RMCopyable.h"; path = "RMMapper/NSObject+RMCopyable.h"; sourceTree = "<group>"; };
+		C3B4EE69E2B5A7F9B372333D /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		C5A00C64F977E71834935358 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		C665A9822D2FEE4A8734B237 /* libPods-RMMapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RMMapper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC6DB5FE7B4D58F4A6C06FA8 /* Pods-RMMapper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RMMapper-prefix.pch"; sourceTree = "<group>"; };
+		CE770969540CF250F335D8A5 /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
+		D43F056734D3BC8A4240CFF6 /* WebSocketRailsConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebSocketRailsConnection.h; path = "WebSocketRails-iOS/WebSocketRailsConnection.h"; sourceTree = "<group>"; };
+		DAC7B30E799D991046FCD579 /* WebSocketRailsConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebSocketRailsConnection.m; path = "WebSocketRails-iOS/WebSocketRailsConnection.m"; sourceTree = "<group>"; };
+		DC494459DB249027AFE9867C /* libPods-WebSocketRails.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WebSocketRails.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E33EDA4168AF3A07B6058A92 /* Pods-RMMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RMMapper-dummy.m"; sourceTree = "<group>"; };
+		F6B9C7B74277CEFB403CF38F /* WebSocketRailsChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebSocketRailsChannel.h; path = "WebSocketRails-iOS/WebSocketRailsChannel.h"; sourceTree = "<group>"; };
+		F85EFC8D538C7D64877CCBFE /* WebSocketRailsEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WebSocketRailsEvent.h; path = "WebSocketRails-iOS/WebSocketRailsEvent.h"; sourceTree = "<group>"; };
+		F945F866F5BD5F3A34BCE625 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+SRB64Additions.m"; path = "SocketRocket/NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		FE45184AFF9BB8D38658EA07 /* Pods-WebSocketRails-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WebSocketRails-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89978A87EE101B43079E62E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FA02AD78ADB41AA5BFB641F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A62F7E4960A3D67A49423BD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D410DC6B3F62723360A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D13183F53EF51DBF1096DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B8F9C098A10618149D19BE0 /* CFNetwork.framework in Frameworks */,
+				E483C43B613CE10D39F24693 /* Foundation.framework in Frameworks */,
+				726B163C545CCADB8863D3B4 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D90D6748AD7A32D5EE6ED3D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8133658FEAF9B673878B6F4F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0092CDD68695F26C1A2BFCD6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				49A406A5BD475BFBD5F9974E /* CFNetwork.framework */,
+				99604D2420F199A91C1589E4 /* Foundation.framework */,
+				B8DD5A6E087FC6BB82248E98 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		153BBAEE7F245750D3249DBA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62D44CEBF89CAF9009798C35 /* Pods-acknowledgements.markdown */,
+				C3B4EE69E2B5A7F9B372333D /* Pods-acknowledgements.plist */,
+				C5A00C64F977E71834935358 /* Pods-dummy.m */,
+				2320E46481476EA0005DB4BE /* Pods-environment.h */,
+				076738F03A544826FA84783B /* Pods-resources.sh */,
+				A1C3F810E9323E71DFFE348E /* Pods.debug.xcconfig */,
+				0278DBC753124C21FF62DB37 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		1E03CDBBCDC46D231A5055D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CEA1856D65A7849C85416E6 /* RMMapper */,
+				44A0B482F45B911F0BC22DD8 /* SocketRocket */,
+				C354129ABB21F01059D56465 /* WebSocketRails */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		44A0B482F45B911F0BC22DD8 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				126FA871205C74D6C13D62CC /* NSData+SRB64Additions.h */,
+				F945F866F5BD5F3A34BCE625 /* NSData+SRB64Additions.m */,
+				1AF56FA6D982399E3692B2A2 /* SRWebSocket.h */,
+				CE770969540CF250F335D8A5 /* SRWebSocket.m */,
+				6883B34917D108E16F269C3D /* base64.c */,
+				67ABB6AEA61818AACE15C6FB /* base64.h */,
+				8C4B7FB45F9BC206EF69698D /* Support Files */,
+			);
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
+		47DDE42AA2D46C693032DE2C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				153BBAEE7F245750D3249DBA /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		4CEA1856D65A7849C85416E6 /* RMMapper */ = {
+			isa = PBXGroup;
+			children = (
+				BA48940819FA2CD96459BEFE /* NSObject+RMArchivable.h */,
+				A4686D7A7693F4D6B98E2F05 /* NSObject+RMArchivable.m */,
+				C317D302AE142ECC63001BBF /* NSObject+RMCopyable.h */,
+				8337D619A2E6B0D9EE818CD1 /* NSObject+RMCopyable.m */,
+				ACC426040FDC57B9C047A00A /* NSUserDefaults+RMSaveCustomObject.h */,
+				6D93BCDD7E506E533F5B760F /* NSUserDefaults+RMSaveCustomObject.m */,
+				A72723FCAA26E1F2136B1E4C /* RMMapper.h */,
+				A0C020E15FBF6ED21B951E64 /* RMMapper.m */,
+				CB1CCEEAF8AF45F875968683 /* Support Files */,
+			);
+			path = RMMapper;
+			sourceTree = "<group>";
+		};
+		782EBA36F86F34727CC723B3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F2DB89B1AB17C9EE77F5ECD /* Pods-WebSocketRails.xcconfig */,
+				6CAB01DEB36A03E8B7BE426F /* Pods-WebSocketRails-Private.xcconfig */,
+				FE45184AFF9BB8D38658EA07 /* Pods-WebSocketRails-dummy.m */,
+				ADC35033DFB50222797C8D34 /* Pods-WebSocketRails-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-WebSocketRails";
+			sourceTree = "<group>";
+		};
+		7E1798C3503DB7A2D17A9D79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				029F426F7648A6C659FF3609 /* libPods.a */,
+				C665A9822D2FEE4A8734B237 /* libPods-RMMapper.a */,
+				166DC6101E962083251A59A4 /* libPods-SocketRocket.a */,
+				DC494459DB249027AFE9867C /* libPods-WebSocketRails.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F8DB6668A334DEF184424BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0092CDD68695F26C1A2BFCD6 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C4B7FB45F9BC206EF69698D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F6DC6134E831DC4121B9C37 /* Pods-SocketRocket.xcconfig */,
+				140CB003A17CE990F689A224 /* Pods-SocketRocket-Private.xcconfig */,
+				7D7405CA7F4257378927C4EE /* Pods-SocketRocket-dummy.m */,
+				29CEB00F8E03CA9506B2B2F3 /* Pods-SocketRocket-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-SocketRocket";
+			sourceTree = "<group>";
+		};
+		BAED1E233A49E39D09F90F36 = {
+			isa = PBXGroup;
+			children = (
+				2C1BBF44696B0FC106BC47CC /* Podfile */,
+				7F8DB6668A334DEF184424BA /* Frameworks */,
+				1E03CDBBCDC46D231A5055D1 /* Pods */,
+				7E1798C3503DB7A2D17A9D79 /* Products */,
+				47DDE42AA2D46C693032DE2C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		C354129ABB21F01059D56465 /* WebSocketRails */ = {
+			isa = PBXGroup;
+			children = (
+				F6B9C7B74277CEFB403CF38F /* WebSocketRailsChannel.h */,
+				1936DB15AF844B42C2633F37 /* WebSocketRailsChannel.m */,
+				D43F056734D3BC8A4240CFF6 /* WebSocketRailsConnection.h */,
+				DAC7B30E799D991046FCD579 /* WebSocketRailsConnection.m */,
+				A39AC5C4AD50B0696AAEACB0 /* WebSocketRailsDispatcher.h */,
+				012BA015A26328693FEFA67C /* WebSocketRailsDispatcher.m */,
+				F85EFC8D538C7D64877CCBFE /* WebSocketRailsEvent.h */,
+				6037200A479CCC5FA719621B /* WebSocketRailsEvent.m */,
+				30B4122722DE86350D34C20D /* WebSocketRailsTypes.h */,
+				782EBA36F86F34727CC723B3 /* Support Files */,
+			);
+			path = WebSocketRails;
+			sourceTree = "<group>";
+		};
+		CB1CCEEAF8AF45F875968683 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB0587388064B9825A8E6049 /* Pods-RMMapper.xcconfig */,
+				8D824C9EB914B7024E577298 /* Pods-RMMapper-Private.xcconfig */,
+				E33EDA4168AF3A07B6058A92 /* Pods-RMMapper-dummy.m */,
+				CC6DB5FE7B4D58F4A6C06FA8 /* Pods-RMMapper-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-RMMapper";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		56DA4C0E45C944E7EC0AA3C6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424EDE394897E4537AB16554 /* NSObject+RMArchivable.h in Headers */,
+				C454B6553E651AD5A9AAA1E1 /* NSObject+RMCopyable.h in Headers */,
+				C6FEDA18FCAA1EBC393ECE15 /* NSUserDefaults+RMSaveCustomObject.h in Headers */,
+				E8107BD676BAD77E628EE89D /* RMMapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E37D841D12EBBD76F25CF59 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6347FE8D93282E2C29747421 /* NSData+SRB64Additions.h in Headers */,
+				B4C853AAED56042DBAA5FF25 /* SRWebSocket.h in Headers */,
+				F3C26A9796CBF7D809242AD4 /* base64.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B17B6C188953A5A6272A3F31 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70174717013674BC92FA7A53 /* WebSocketRailsChannel.h in Headers */,
+				F43F617655F26A88BBBA1E0B /* WebSocketRailsConnection.h in Headers */,
+				C12327E0DC3F15B610E0B60E /* WebSocketRailsDispatcher.h in Headers */,
+				3E3E3FFB8EE8F64929D3250A /* WebSocketRailsEvent.h in Headers */,
+				FD73D0FD3A486DC8182D1FB6 /* WebSocketRailsTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		56CF19743D1D3D8FB6345314 /* Pods-SocketRocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2FDA2C633F82210728316D9 /* Build configuration list for PBXNativeTarget "Pods-SocketRocket" */;
+			buildPhases = (
+				83628DC9C409EF0D222E4C34 /* Sources */,
+				D4D13183F53EF51DBF1096DB /* Frameworks */,
+				5E37D841D12EBBD76F25CF59 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-SocketRocket";
+			productName = "Pods-SocketRocket";
+			productReference = 166DC6101E962083251A59A4 /* libPods-SocketRocket.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		820E43762B506BD13A70FF5B /* Pods-RMMapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC9EBDE196DFA5B6E9CA5F43 /* Build configuration list for PBXNativeTarget "Pods-RMMapper" */;
+			buildPhases = (
+				5CFD8C32280520117FC1BF76 /* Sources */,
+				D90D6748AD7A32D5EE6ED3D4 /* Frameworks */,
+				56DA4C0E45C944E7EC0AA3C6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-RMMapper";
+			productName = "Pods-RMMapper";
+			productReference = C665A9822D2FEE4A8734B237 /* libPods-RMMapper.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8B635C262881A4996DF6721B /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B1B020C2AE483DD0339DD6B /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				7D97BACC91F619013CC34EB2 /* Sources */,
+				A62F7E4960A3D67A49423BD3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				313D19B346B37723DCA8E3C5 /* PBXTargetDependency */,
+				F2851207277D87F81799FE14 /* PBXTargetDependency */,
+				C45528FD3D17D19D8249FF2D /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 029F426F7648A6C659FF3609 /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BE9F56302E5A78AC5620B32A /* Pods-WebSocketRails */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45427BA99288371408EA1F9C /* Build configuration list for PBXNativeTarget "Pods-WebSocketRails" */;
+			buildPhases = (
+				D90474D8CB90CC56FDD893EE /* Sources */,
+				89978A87EE101B43079E62E5 /* Frameworks */,
+				B17B6C188953A5A6272A3F31 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				396CD76DA2C6439F4589C99B /* PBXTargetDependency */,
+			);
+			name = "Pods-WebSocketRails";
+			productName = "Pods-WebSocketRails";
+			productReference = DC494459DB249027AFE9867C /* libPods-WebSocketRails.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB391329A69ACA3D2404F0FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 5A0C40096B07C4F134183238 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BAED1E233A49E39D09F90F36;
+			productRefGroup = 7E1798C3503DB7A2D17A9D79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B635C262881A4996DF6721B /* Pods */,
+				820E43762B506BD13A70FF5B /* Pods-RMMapper */,
+				56CF19743D1D3D8FB6345314 /* Pods-SocketRocket */,
+				BE9F56302E5A78AC5620B32A /* Pods-WebSocketRails */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5CFD8C32280520117FC1BF76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE4566147D37017AF957FCF0 /* NSObject+RMArchivable.m in Sources */,
+				2477DB434C2B876E08327861 /* NSObject+RMCopyable.m in Sources */,
+				BA437891CDC911A5CBCD6078 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
+				46DA3B749CAE9FA6DCBED0C1 /* Pods-RMMapper-dummy.m in Sources */,
+				065CE00F57563CEE36E6987C /* RMMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D97BACC91F619013CC34EB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91CDC9AA89AED995D7F1EC74 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83628DC9C409EF0D222E4C34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66492A2CEC16A63FE91926BE /* NSData+SRB64Additions.m in Sources */,
+				8F9429642C9368F73C3DC91B /* Pods-SocketRocket-dummy.m in Sources */,
+				E729E77527DDD7FBB8FBB1A4 /* SRWebSocket.m in Sources */,
+				5D42923B13CE552AC2F27618 /* base64.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D90474D8CB90CC56FDD893EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45315BB8769F2D9BE3F47CC0 /* Pods-WebSocketRails-dummy.m in Sources */,
+				F76C81F266F916E0BAE4873C /* WebSocketRailsChannel.m in Sources */,
+				B74CDB5205223DE3DA7BADF2 /* WebSocketRailsConnection.m in Sources */,
+				34D883BAEB63E1CBF1D4D897 /* WebSocketRailsDispatcher.m in Sources */,
+				E01D8EDBBAB8EA646B2A2C19 /* WebSocketRailsEvent.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		313D19B346B37723DCA8E3C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-RMMapper";
+			target = 820E43762B506BD13A70FF5B /* Pods-RMMapper */;
+			targetProxy = B1B8B1B203E9974193AC88AA /* PBXContainerItemProxy */;
+		};
+		396CD76DA2C6439F4589C99B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SocketRocket";
+			target = 56CF19743D1D3D8FB6345314 /* Pods-SocketRocket */;
+			targetProxy = 28704EAB34E1247DEA9EA960 /* PBXContainerItemProxy */;
+		};
+		C45528FD3D17D19D8249FF2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-WebSocketRails";
+			target = BE9F56302E5A78AC5620B32A /* Pods-WebSocketRails */;
+			targetProxy = 80FFBB4AAB0215D11F550C22 /* PBXContainerItemProxy */;
+		};
+		F2851207277D87F81799FE14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SocketRocket";
+			target = 56CF19743D1D3D8FB6345314 /* Pods-SocketRocket */;
+			targetProxy = 99692244B213A950E9593BF9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21ADE4EFAC54290525DB5FF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CAB01DEB36A03E8B7BE426F /* Pods-WebSocketRails-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WebSocketRails/Pods-WebSocketRails-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3D4D7E16A19F40A6F23F7175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		419B500B9FDCD1DC46BE937B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D824C9EB914B7024E577298 /* Pods-RMMapper-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-RMMapper/Pods-RMMapper-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		53754CFE13BC1D2BF4CD79B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0278DBC753124C21FF62DB37 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5A9D5753D033930A11655E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D824C9EB914B7024E577298 /* Pods-RMMapper-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-RMMapper/Pods-RMMapper-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		77A57F535039ED030EF9AA39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CAB01DEB36A03E8B7BE426F /* Pods-WebSocketRails-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WebSocketRails/Pods-WebSocketRails-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A90AF1017D736362FCEBA2AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 140CB003A17CE990F689A224 /* Pods-SocketRocket-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-SocketRocket/Pods-SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ADC1C7FEDF1B084C27193523 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B85B68AE50285E47F00BE92B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 140CB003A17CE990F689A224 /* Pods-SocketRocket-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-SocketRocket/Pods-SocketRocket-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EA10B2665C9BBA7B78D3309F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1C3F810E9323E71DFFE348E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		45427BA99288371408EA1F9C /* Build configuration list for PBXNativeTarget "Pods-WebSocketRails" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21ADE4EFAC54290525DB5FF1 /* Debug */,
+				77A57F535039ED030EF9AA39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A0C40096B07C4F134183238 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D4D7E16A19F40A6F23F7175 /* Debug */,
+				ADC1C7FEDF1B084C27193523 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B1B020C2AE483DD0339DD6B /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA10B2665C9BBA7B78D3309F /* Debug */,
+				53754CFE13BC1D2BF4CD79B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2FDA2C633F82210728316D9 /* Build configuration list for PBXNativeTarget "Pods-SocketRocket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90AF1017D736362FCEBA2AD /* Debug */,
+				B85B68AE50285E47F00BE92B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC9EBDE196DFA5B6E9CA5F43 /* Build configuration list for PBXNativeTarget "Pods-RMMapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A9D5753D033930A11655E2E /* Debug */,
+				419B500B9FDCD1DC46BE937B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB391329A69ACA3D2404F0FA /* Project object */;
+}

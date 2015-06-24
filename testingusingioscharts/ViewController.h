@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Charts/Charts.h>
+#import "testingusingioscharts-swift.h"
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet LineChartView *linechart2;
 
+@property (weak, nonatomic) IBOutlet LineChartView *linechart;
+- (IBAction)changevalue:(id)sender;
 
 @end
 

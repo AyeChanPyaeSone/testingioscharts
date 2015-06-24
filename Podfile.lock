@@ -1,0 +1,16 @@
+PODS:
+  - RMMapper (1.1.5)
+  - SocketRocket (0.3.1-beta2)
+  - WebSocketRails (1.1.2):
+    - SocketRocket (~> 0.3.1-beta2)
+
+DEPENDENCIES:
+  - RMMapper
+  - WebSocketRails
+
+SPEC CHECKSUMS:
+  RMMapper: 21122d753c736d975f6c61e674afce8db73579af
+  SocketRocket: 7284ab9370a06c99aba92b2fe3a32aedd0f9a6fa
+  WebSocketRails: e527090cb1e60d9cf0f689ba4514dbf38835a7ef
+
+COCOAPODS: 0.36.4

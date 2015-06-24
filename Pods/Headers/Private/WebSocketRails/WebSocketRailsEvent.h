@@ -1,0 +1,1 @@
+../../../WebSocketRails/WebSocketRails-iOS/WebSocketRailsEvent.h
