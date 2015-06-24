@@ -10,10 +10,10 @@
                
 @interface Session : NSObject
 
-@property (nonatomic, assign) int *id;
+@property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *user_id;
-@property (nonatomic, assign) int *session_id;
-@property (nonatomic, assign) int *channel_1;
-@property (nonatomic, assign) int *channel_2;
-@property (nonatomic, assign) int *sec;
+@property (nonatomic, strong) NSString *session_id;
+@property (nonatomic, strong) NSNumber *channel_1;
+@property (nonatomic, strong) NSNumber *channel_2;
+@property (nonatomic, strong) NSNumber *sec;
 @end

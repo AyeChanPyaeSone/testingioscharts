@@ -38,9 +38,10 @@
     
     _linechart.highlightEnabled = YES;
     _linechart.dragEnabled = YES;
-    [_linechart setScaleEnabled:YES];
+    [_linechart setScaleXEnabled:YES];
+    [_linechart setScaleYEnabled:NO];
     _linechart.drawGridBackgroundEnabled = NO;
-    _linechart.pinchZoomEnabled = YES;
+    _linechart.pinchZoomEnabled = NO;
 
     
     _linechart.legend.form = ChartLegendFormLine;
@@ -121,7 +122,7 @@
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"DataSet 1"];
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"Abdominal Pressure"];
     set1.axisDependency = AxisDependencyLeft;
     [set1 setColor:UIColor.whiteColor];
     [set1 setCircleColor:UIColor.orangeColor];
@@ -159,10 +160,10 @@
         [yVals2 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"DataSet 2"];
+    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"Body Pressure"];
     set2.axisDependency = AxisDependencyRight;
-    [set2 setColor:UIColor.whiteColor];
-    [set2 setCircleColor:UIColor.orangeColor];
+    [set2 setColor:UIColor.orangeColor];
+    [set2 setCircleColor:UIColor.whiteColor];
     set2.lineWidth = 2.0;
     set2.circleRadius = 3.0;
     set2.fillAlpha = 65/255.0;
@@ -209,7 +210,11 @@
     [_dispatcher bind:@"send_session" callback:^(id data) {
         NSLog(@"send_session %@", data);
         
-        NSArray* sessions =[RMMapper arrayOfClass:[Session class] fromArrayOfDictionary:data];
+        NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"Arrays %@",values);
+        
+        NSArray* sessions =[RMMapper arrayOfClass:[Session class] fromArrayOfDictionary:values];
         
         NSLog(@"sessions %@", sessions);
     }];
