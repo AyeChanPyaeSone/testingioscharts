@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>436C0E89-CF30-4A12-A257-B0FF53DCCD4F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>testingusingioscharts</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1AC35569401A6E11CF18BD1520DF9833193A943C</key>
+		<string>github.com:AyeChanPyaeSone/testingioscharts.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>testingusingioscharts.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1AC35569401A6E11CF18BD1520DF9833193A943C</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:AyeChanPyaeSone/testingioscharts.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1AC35569401A6E11CF18BD1520DF9833193A943C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1AC35569401A6E11CF18BD1520DF9833193A943C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>testingusingioscharts</string>
+		</dict>
+	</array>
+</dict>
+</plist>
