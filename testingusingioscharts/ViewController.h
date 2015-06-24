@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <Charts/Charts.h>
 #import "testingusingioscharts-swift.h"
+#import "RMMapper.h"
+#import "Session.h"
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet LineChartView *linechart2;
 
 @property (weak, nonatomic) IBOutlet LineChartView *linechart;
 - (IBAction)changevalue:(id)sender;
