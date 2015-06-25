@@ -30,20 +30,12 @@
 }
 
 -(void) loadlineChart1{
+    
     _linechart.delegate = self;
     
     _linechart.descriptionText = @"";
     _linechart.noDataTextDescription = @"You need to provide data for the chart.";
-    
-    
-    _linechart.highlightEnabled = YES;
-    _linechart.dragEnabled = NO;
-    [_linechart setScaleXEnabled:YES];
-    [_linechart setScaleYEnabled:YES];
-    _linechart.drawGridBackgroundEnabled = NO;
-    _linechart.scaleXEnabled = YES;
-    _linechart.pinchZoomEnabled = YES;
-    
+
     
     _linechart.highlightEnabled = YES;
     _linechart.dragEnabled = YES;
@@ -60,10 +52,10 @@
 
     ChartXAxis *xAxis = _linechart.xAxis;
     xAxis.labelPosition = XAxisLabelPositionBottom;
-    xAxis.labelFont = [UIFont systemFontOfSize:9.f];
+    xAxis.labelFont = [UIFont systemFontOfSize:10.f];
     xAxis.labelTextColor = UIColor.whiteColor;
-    xAxis.drawGridLinesEnabled = NO;
-    xAxis.spaceBetweenLabels = 6.0;
+    xAxis.drawGridLinesEnabled = YES;
+    xAxis.spaceBetweenLabels = 8.0;
     
     
     ChartYAxis *leftAxis = _linechart.leftAxis;
@@ -86,11 +78,10 @@
     
     _linechart.legend.form = ChartLegendFormLine;
     
-    
     [_linechart animateWithXAxisDuration:2.5 easingOption:ChartEasingOptionEaseInOutQuart];
 
+    [self setDataCountlinechart:(7) range:5];
     
-     [self setDataCountlinechart:(7) range:5];
 }
 
 
@@ -169,7 +160,7 @@
     }
     
     LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"Body Pressure"];
-    set2.axisDependency = AxisDependencyRight;
+    set2.axisDependency = AxisDependencyLeft;
     [set2 setColor:UIColor.orangeColor];
     [set2 setCircleColor:UIColor.whiteColor];
     set2.lineWidth = 2.0;
@@ -197,7 +188,7 @@
     
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
     
-    
+    NSInteger min = 0;
     for (int i = 0; i <= 30; i++)
     {
 //        Session *session = [sessions objectAtIndex:i];
@@ -209,12 +200,16 @@
         NSString *abc = [NSString stringWithFormat:@"%d", i];
         
         [xVals addObject: abc];
-        
     }
+    
+    NSLog(@"xVals %@",xVals);
     
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < count; i++)
+    NSMutableArray *yvalues= [[NSMutableArray alloc] init];
+    NSMutableArray *minutes= [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i <count; i++)
     {
         Session *session = [sessions objectAtIndex:i];
         NSInteger val = [session.channel_1 intValue];
@@ -223,10 +218,32 @@
         if(seconds>1800){
             seconds = 1700;
         }
-        NSInteger min = seconds/60;
-        
-        [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:min]];
+        min = seconds/60;
+        [yvalues addObject:[NSString stringWithFormat:@"%ld",val]];
+        [minutes addObject:[NSString stringWithFormat:@"%ld",min]];
     }
+
+    for (int i = 0; i <= 30; i++)
+    {
+        for (int j=0;j<11; j++){
+
+            if(i == [minutes[j] intValue]){
+                NSLog(@"Log %d",i);
+                [yVals addObject:[[ChartDataEntry alloc] initWithValue:[yvalues[j] intValue] xIndex:i]];
+                //return;
+            }
+            else{
+                 NSLog(@"Not %d",i);
+                //[yVals addObject:[[ChartDataEntry alloc] initWithValue:0 xIndex:i]];
+               // return;
+            }
+            
+        }
+    }
+
+    NSLog(@"YVALUES %@",yVals);
+    
+    NSLog(@"Channel 2");
     
     LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"Abdominal Pressure"];
     set1.axisDependency = AxisDependencyLeft;
@@ -242,7 +259,10 @@
     
     NSMutableArray *yVals2 = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < count; i++)
+    NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
+    NSMutableArray *minutes2= [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i <count; i++)
     {
         Session *session = [sessions objectAtIndex:i];
         NSInteger val = [session.channel_2 intValue];
@@ -251,12 +271,30 @@
         if(seconds>1800){
             seconds = 1700;
         }
-        NSInteger min = seconds/60;
-        
-        NSLog(@"Minutes %ld",(long)min);
-        
-        [yVals2 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:min]];
+        min = seconds/60;
+        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
+    
+    for (int i = 0; i <= 30; i++)
+    {
+        for (int j=0;j<11; j++){
+            
+            if(i == [minutes2[j] intValue]){
+                NSLog(@"Log %d",i);
+                [yVals2 addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+                //return;
+            }
+            else{
+                NSLog(@"Not %d",i);
+                //[yVals addObject:[[ChartDataEntry alloc] initWithValue:0 xIndex:i]];
+                // return;
+            }
+            
+        }
+    }
+    
+    
     
     LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals2 label:@"Body Pressure"];
     set2.axisDependency = AxisDependencyLeft;
@@ -284,6 +322,7 @@
 
 
 - (IBAction)changevalue:(id)sender {
+    
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
     [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
     [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
@@ -319,6 +358,10 @@
         NSLog(@"sessions %@", sessions);
         
         [self setDataCountlinechart:(int)[sessions count] range:5 sessions:sessions];
+        [_linechart setNeedsDisplay];
+        [_linechart zoomOut];
+        [_linechart setVisibleXRangeMaximum:20.0];
+        [_linechart notifyDataSetChanged];
         
     }];
 }

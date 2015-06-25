@@ -99,7 +99,8 @@ public class ChartDataSet: NSObject
         }
         else
         {
-            endValue = end;
+            //endValue = end;
+            endValue = end > (_yVals.count - 1) ? (_yVals.count - 1) : end;
         }
         
         _lastStart = start;
