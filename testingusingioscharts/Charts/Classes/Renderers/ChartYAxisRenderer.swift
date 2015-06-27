@@ -218,6 +218,7 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
         {
             var text = _yAxis.getFormattedLabel(i);
             
+            //   var text = 1;
             if (!_yAxis.isDrawTopYLabelEntryEnabled && i >= _yAxis.entryCount - 1)
             {
                 break;
@@ -230,6 +231,8 @@ public class ChartYAxisRenderer: ChartAxisRendererBase
             pt.x = fixedPosition;
             pt.y += offset;
             
+            
+            println("Values");
             ChartUtils.drawText(context: context, text: text, point: pt, align: textAlign, attributes: [NSFontAttributeName: labelFont, NSForegroundColorAttributeName: labelTextColor]);
         }
     }

@@ -26,7 +26,7 @@ public class ChartXAxis: ChartAxisBase
         case TopInside
         case BottomInside
     }
-    
+    println(@"Vlaues", values);
     public var values = [String?]()
     public var labelWidth = CGFloat(1.0)
     public var labelHeight = CGFloat(1.0)
@@ -77,6 +77,7 @@ public class ChartXAxis: ChartAxisBase
         
         for (var i = 0; i < values.count; i++)
         {
+           // var text = 1;
             var text = values[i];
             
             if (text != nil && count(longest) < count(text!))
@@ -124,6 +125,7 @@ public class ChartXAxis: ChartAxisBase
     
     public var valuesObjc: [NSObject]
     {
+        println(@"Vlaues", self.values);
         get { return ChartUtils.bridgedObjCGetStringArray(swift: values); }
         set { self.values = ChartUtils.bridgedObjCGetStringArray(objc: newValue); }
     }

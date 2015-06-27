@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A391F90B1B3C7B4D007E1032 /* CombinedChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A391F90A1B3C7B4D007E1032 /* CombinedChartViewController.m */; };
 		A3CBE2E61B3A593900C205F6 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CBE2E51B3A593900C205F6 /* Session.m */; };
 		A3E289F61B35B7C6001A8763 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E289F51B35B7C6001A8763 /* main.m */; };
 		A3E289F91B35B7C6001A8763 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E289F81B35B7C6001A8763 /* AppDelegate.m */; };
@@ -53,6 +54,8 @@
 		22233431272C75CCF73C6313 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		579F4D8BCEF482E3FE5C3F8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB6848B8AE2052A5F91F6F0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A391F90A1B3C7B4D007E1032 /* CombinedChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinedChartViewController.m; sourceTree = "<group>"; };
+		A391F90D1B3C7B56007E1032 /* CombinedChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinedChartViewController.h; sourceTree = "<group>"; };
 		A3CBE2E41B3A592400C205F6 /* Session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		A3CBE2E51B3A593900C205F6 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		A3CBE2F21B3A8B5700C205F6 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				A3E28A021B35B7C6001A8763 /* LaunchScreen.xib */,
 				A3E289F31B35B7C6001A8763 /* Supporting Files */,
 				A3E28A2E1B35C339001A8763 /* testingusingioscharts-Bridging-Header.h */,
+				A391F90A1B3C7B4D007E1032 /* CombinedChartViewController.m */,
+				A391F90D1B3C7B56007E1032 /* CombinedChartViewController.h */,
 			);
 			path = testingusingioscharts;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A391F90B1B3C7B4D007E1032 /* CombinedChartViewController.m in Sources */,
 				A3E289FC1B35B7C6001A8763 /* ViewController.m in Sources */,
 				A3CBE2E61B3A593900C205F6 /* Session.m in Sources */,
 				A3E289F91B35B7C6001A8763 /* AppDelegate.m in Sources */,

@@ -54,7 +54,7 @@
     xAxis.labelPosition = XAxisLabelPositionBottom;
     xAxis.labelFont = [UIFont systemFontOfSize:10.f];
     xAxis.labelTextColor = UIColor.whiteColor;
-    xAxis.drawGridLinesEnabled = YES;
+    xAxis.drawGridLinesEnabled = NO;
     xAxis.spaceBetweenLabels = 8.0;
     
     
@@ -225,17 +225,15 @@
 
     for (int i = 0; i <= 30; i++)
     {
-        for (int j=0;j<11; j++){
+        for (int j=0;j<10; j++){
 
             if(i == [minutes[j] intValue]){
-                NSLog(@"Log %d",i);
+                NSLog(@"I %d Minutes %d",i,[minutes[j] intValue]);
                 [yVals addObject:[[ChartDataEntry alloc] initWithValue:[yvalues[j] intValue] xIndex:i]];
-                //return;
             }
             else{
                  NSLog(@"Not %d",i);
-                //[yVals addObject:[[ChartDataEntry alloc] initWithValue:0 xIndex:i]];
-               // return;
+    
             }
             
         }
@@ -278,17 +276,14 @@
     
     for (int i = 0; i <= 30; i++)
     {
-        for (int j=0;j<11; j++){
+        for (int j=0;j<10; j++){
             
             if(i == [minutes2[j] intValue]){
-                NSLog(@"Log %d",i);
+                NSLog(@"I %d Minutes %d",i,[minutes2[j] intValue]);
                 [yVals2 addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
-                //return;
             }
             else{
                 NSLog(@"Not %d",i);
-                //[yVals addObject:[[ChartDataEntry alloc] initWithValue:0 xIndex:i]];
-                // return;
             }
             
         }

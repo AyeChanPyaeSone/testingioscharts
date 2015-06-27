@@ -180,6 +180,7 @@ public class ChartYAxis: ChartAxisBase
         {
             var text = getFormattedLabel(i);
             
+            //text =1;
             if (count(longest) < count(text))
             {
                 longest = text;
@@ -192,12 +193,15 @@ public class ChartYAxis: ChartAxisBase
     /// Returns the formatted y-label at the specified index. This will either use the auto-formatter or the custom formatter (if one is set).
     public func getFormattedLabel(index: Int) -> String
     {
+        print(entries.count);
         if (index < 0 || index >= entries.count)
         {
             return "";
         }
         
         return (valueFormatter ?? _defaultValueFormatter).stringFromNumber(entries[index])!;
+        
+        //return (valueFormatter ?? _defaultValueFormatter).stringFromNumber(1)!;
     }
     
     /// Returns true if this axis needs horizontal offset, false if no offset is needed.
