@@ -211,16 +211,16 @@
     
     for (int i = 0; i <count; i++)
     {
-        Session *session = [sessions objectAtIndex:i];
-        NSInteger val = [session.channel_1 intValue];
-        
-        NSInteger seconds = [session.sec intValue];
-        if(seconds>1800){
-            seconds = 1700;
-        }
-        min = seconds/60;
-        [yvalues addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes addObject:[NSString stringWithFormat:@"%ld",min]];
+//        Session *session = [sessions objectAtIndex:i];
+//        NSInteger val = [session.channel_1 intValue];
+//        
+//        NSInteger seconds = [session.sec intValue];
+//        if(seconds>1800){
+//            seconds = 1700;
+//        }
+//        min = seconds/60;
+//        [yvalues addObject:[NSString stringWithFormat:@"%ld",val]];
+//        [minutes addObject:[NSString stringWithFormat:@"%ld",min]];
     }
 
     for (int i = 0; i <= 30; i++)
@@ -262,16 +262,16 @@
     
     for (int i = 0; i <count; i++)
     {
-        Session *session = [sessions objectAtIndex:i];
-        NSInteger val = [session.channel_2 intValue];
-        
-        NSInteger seconds = [session.sec intValue];
-        if(seconds>1800){
-            seconds = 1700;
-        }
-        min = seconds/60;
-        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+//        Session *session = [sessions objectAtIndex:i];
+//        NSInteger val = [session.channel_2 intValue];
+//        
+//        NSInteger seconds = [session.sec intValue];
+//        if(seconds>1800){
+//            seconds = 1700;
+//        }
+//        min = seconds/60;
+//        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+//        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
     
     for (int i = 0; i <= 30; i++)

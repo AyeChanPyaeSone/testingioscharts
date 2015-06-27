@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Motion.h"
+#import "Pressure.h"
                
 @interface Session : NSObject
 
-@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *user_id;
-@property (nonatomic, strong) NSString *session_id;
-@property (nonatomic, strong) NSString *channel_1;
-@property (nonatomic, strong) NSString *channel_2;
-@property (nonatomic, strong) NSString *sec;
+@property (nonatomic, strong) NSArray *motions;
+@property (nonatomic, strong) NSArray *pressure_sets;
+
 @end

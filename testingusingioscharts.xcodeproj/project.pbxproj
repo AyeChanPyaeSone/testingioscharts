@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A37C5B1E1B3EDFFF000F46FF /* Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = A37C5B1D1B3EDFFF000F46FF /* Motion.m */; };
+		A37C5B201B3EE050000F46FF /* Pressure.m in Sources */ = {isa = PBXBuildFile; fileRef = A37C5B1F1B3EE050000F46FF /* Pressure.m */; };
 		A391F90B1B3C7B4D007E1032 /* CombinedChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A391F90A1B3C7B4D007E1032 /* CombinedChartViewController.m */; };
 		A3CBE2E61B3A593900C205F6 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CBE2E51B3A593900C205F6 /* Session.m */; };
 		A3E289F61B35B7C6001A8763 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E289F51B35B7C6001A8763 /* main.m */; };
@@ -54,6 +56,10 @@
 		22233431272C75CCF73C6313 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		579F4D8BCEF482E3FE5C3F8E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB6848B8AE2052A5F91F6F0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A37C5B1B1B3EDFEE000F46FF /* Motion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Motion.h; sourceTree = "<group>"; };
+		A37C5B1D1B3EDFFF000F46FF /* Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Motion.m; sourceTree = "<group>"; };
+		A37C5B1F1B3EE050000F46FF /* Pressure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pressure.m; sourceTree = "<group>"; };
+		A37C5B211B3EE05A000F46FF /* Pressure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pressure.h; sourceTree = "<group>"; };
 		A391F90A1B3C7B4D007E1032 /* CombinedChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinedChartViewController.m; sourceTree = "<group>"; };
 		A391F90D1B3C7B56007E1032 /* CombinedChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombinedChartViewController.h; sourceTree = "<group>"; };
 		A3CBE2E41B3A592400C205F6 /* Session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 			children = (
 				A3CBE2E41B3A592400C205F6 /* Session.h */,
 				A3CBE2E51B3A593900C205F6 /* Session.m */,
+				A37C5B1B1B3EDFEE000F46FF /* Motion.h */,
+				A37C5B1D1B3EDFFF000F46FF /* Motion.m */,
+				A37C5B1F1B3EE050000F46FF /* Pressure.m */,
+				A37C5B211B3EE05A000F46FF /* Pressure.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -354,6 +364,8 @@
 				A3E289F91B35B7C6001A8763 /* AppDelegate.m in Sources */,
 				A3E289F61B35B7C6001A8763 /* main.m in Sources */,
 				A3E28A301B35C33A001A8763 /* BalloonMarker.swift in Sources */,
+				A37C5B201B3EE050000F46FF /* Pressure.m in Sources */,
+				A37C5B1E1B3EDFFF000F46FF /* Motion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

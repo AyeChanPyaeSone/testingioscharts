@@ -123,16 +123,16 @@
     
     for (int i = 0; i <[sessions count]; i++)
     {
-        Session *session = [sessions objectAtIndex:i];
-        NSInteger val = [session.channel_2 intValue];
-        
-        NSInteger seconds = [session.sec intValue];
-        if(seconds>1800){
-            seconds = 1700;
-        }
-        min = seconds/60;
-        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+//        Session *session = [sessions objectAtIndex:i];
+//        NSInteger val = [session.channel_2 intValue];
+//        
+//        NSInteger seconds = [session.sec intValue];
+//        if(seconds>1800){
+//            seconds = 1700;
+//        }
+//        min = seconds/60;
+//        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+//        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
     
     for (int i = 0; i <= 30; i++)
@@ -187,16 +187,16 @@
     
     for (int i = 0; i <[sessions count]; i++)
     {
-        Session *session = [sessions objectAtIndex:i];
-        NSInteger val = [session.channel_1 intValue];
-        
-        NSInteger seconds = [session.sec intValue];
-        if(seconds>1800){
-            seconds = 1700;
-        }
-        min = seconds/60;
-        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+//        Session *session = [sessions objectAtIndex:i];
+//        NSInteger val = [session.channel_1 intValue];
+//        
+//        NSInteger seconds = [session.sec intValue];
+//        if(seconds>1800){
+//            seconds = 1700;
+//        }
+//        min = seconds/60;
+//        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+//        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
 
     for (int i = 0; i < ITEM_COUNT; i++)
@@ -251,23 +251,44 @@
         NSLog(@"JSON DATA %@",jsonString);
     }
     
-    [_dispatcher trigger:@"send_session" data:[self eventDataWithString:jsonString] success:^(id data) {
-        NSLog(@"Success event: %@", data);
-    } failure:^(id data) {
-        NSLog(@"Fail event: %@", data);
-    }];
-   
-    [_dispatcher bind:@"send_session" callback:^(id data) {
-        NSLog(@"send_session %@", data);
-        
-        NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"Arrays %@",values);
-        
+//    [_dispatcher trigger:@"send_session" data:[self eventDataWithString:jsonString] success:^(id data) {
+//        NSLog(@"Success event: %@", data);
+//    } failure:^(id data) {
+//        NSLog(@"Fail event: %@", data);
+//    }];
+//   
+//    [_dispatcher bind:@"send_session" callback:^(id data) {
+//        NSLog(@"send_session %@", data);
+//        
+//        NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
+//        NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
+//        NSLog(@"Arrays %@",values);
+    
        // NSArray* sessions =[RMMapper arrayOfClass:[Session class] fromArrayOfDictionary:values];
         
       //  NSLog(@"sessions %@", sessions);
         //[self LoadChartView:(NSArray *)sessions];
+    
+    
+    [_dispatcher trigger:@"send_session" data:[self eventDataWithString:jsonString] success:^(id data) {
+                NSLog(@"Success event: %@", data);
+            } failure:^(id data) {
+                NSLog(@"Fail event: %@", data);
+            }];
+        
+    [_dispatcher bind:@"send_session" callback:^(id data) {
+        
+         NSLog(@"send_session %@", data);
+                NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
+                NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
+        
+         NSLog(@"send_session Values %@", values);
+        
+        Session *session =[RMMapper objectWithClass:[Session class] fromDictionary:values];
+        
+        
+        NSLog(@"Session %@",session.pressure_sets);
+        NSLog(@"Session %@",session.motions);
         
     }];
     
