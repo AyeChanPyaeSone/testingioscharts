@@ -10,6 +10,8 @@
 #import <Charts/Charts.h>
 #import "RMMapper.h"
 #import "Session.h"
+#import "Pressure.h"
+#import "Motion.h"
 
 @interface CombinedChartViewController : UIViewController
 - (IBAction)pressedLoadChartView:(id)sender;

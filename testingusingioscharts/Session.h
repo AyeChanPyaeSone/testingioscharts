@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Motion.h"
 #import "Pressure.h"
+#import "RMMapper.h"
                
-@interface Session : NSObject
+@interface Session : NSObject<RMMapping>
 
-@property (nonatomic, strong) NSArray *motions;
-@property (nonatomic, strong) NSArray *pressure_sets;
+@property (nonatomic, strong) NSDictionary *motions;
+@property (nonatomic, strong) NSDictionary *pressure_sets;
 
 @end

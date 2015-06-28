@@ -87,9 +87,9 @@
    
 }
 
--(void) LoadChartView:(NSArray *)sessions{
+-(void) LoadChartView:(NSArray *)pressures motion:(NSArray *)motions {
     
-    NSLog(@"Load Chart View Sessions %@",sessions);
+    NSLog(@"Load Chart View Sessions %@",pressures);
     NSMutableArray *months =[[NSMutableArray alloc] init];
     
     for (int index = 0; index <= 30; index++)
@@ -98,8 +98,8 @@
     }
     
     CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months];
-    data.lineData = [self generateLineData:sessions];
-    data.barData = [self generateBarData:sessions];
+    data.lineData = [self generateLineData:pressures];
+    data.barData = [self generateBarData:motions];
     
     _chartView.data = data;
     [_chartView setVisibleXRangeMaximum:20.0];
@@ -111,48 +111,40 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (LineChartData *)generateLineData:(NSArray *)sessions
+- (LineChartData *)generateLineData:(NSArray *)pressures
 {
     LineChartData *d = [[LineChartData alloc] init];
     
-    NSMutableArray *entries = [[NSMutableArray alloc] init];
-    
-    NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
-    NSMutableArray *minutes2= [[NSMutableArray alloc] init];
     NSInteger min = 0;
     
-    for (int i = 0; i <[sessions count]; i++)
+    // Start Line 1
+    
+    NSMutableArray *entries = [[NSMutableArray alloc] init];
+    NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
+    NSMutableArray *minutes2= [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i <[pressures count]; i++)
     {
-//        Session *session = [sessions objectAtIndex:i];
-//        NSInteger val = [session.channel_2 intValue];
-//        
-//        NSInteger seconds = [session.sec intValue];
-//        if(seconds>1800){
-//            seconds = 1700;
-//        }
-//        min = seconds/60;
-//        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-//        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+        Pressure *pressure = [pressures objectAtIndex:i];
+        NSInteger val = [pressure.channel_1 intValue];
+        
+        NSInteger seconds = [pressure.sec intValue];
+        min = seconds/60000;
+        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
     
     for (int i = 0; i <= 30; i++)
     {
-        for (int j=0;j<10; j++){
+        for (int j=0;j<[pressures count]; j++){
             
             if(i == [minutes2[j] intValue]){
-                NSLog(@"I %d Minutes %d",i,[minutes2[j] intValue]);
                 [entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
             }
-            else{
-                NSLog(@"Not %d",i);
-            }
-            
         }
     }
     
-    NSLog(@"Line");
-    
-    LineChartDataSet *set = [[LineChartDataSet alloc] initWithYVals:entries label:@"Line DataSet"];
+    LineChartDataSet *set = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
     [set setColor:[UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f]];
     set.lineWidth = 2.5;
     [set setCircleColor:[UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f]];
@@ -165,66 +157,93 @@
     
     set.axisDependency = AxisDependencyLeft;
     
+    //Start Line 2
+    
+    NSMutableArray *secondentries = [[NSMutableArray alloc] init];
+    NSMutableArray *secondyvalues2= [[NSMutableArray alloc] init];
+    NSMutableArray *secondminutes2= [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i <[pressures count]; i++)
+    {
+        Pressure *pressure = [pressures objectAtIndex:i];
+        NSInteger val = [pressure.channel_2 intValue];
+        
+        NSInteger seconds = [pressure.sec intValue];
+        min = seconds/60000;
+        [secondyvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+        [secondminutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+    }
+    
+    for (int i = 0; i <= 30; i++)
+    {
+        for (int j=0;j<[pressures count]; j++){
+            
+            if(i == [secondminutes2[j] intValue]){
+                [secondentries addObject:[[ChartDataEntry alloc] initWithValue:[secondyvalues2[j] intValue] xIndex:i]];
+            }
+        }
+    }
+    
+    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:secondentries label:@"Body Pressure"];
+    [set2 setColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:1.f]];
+    set2.lineWidth = 2.5;
+    [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:1.f]];
+    set2.fillColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
+    set2.drawCubicEnabled = NO;
+    set2.drawValuesEnabled = NO;
+    set2.valueFont = [UIFont systemFontOfSize:10.f];
+    set2.circleRadius = 3.0;
+    set2.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
+    
+    set2.axisDependency = AxisDependencyLeft;
+    
+    
     [d addDataSet:set];
+    [d addDataSet:set2];
     
     return d;
 }
 
-- (BarChartData *)generateBarData:(NSArray *)sessions
+- (BarChartData *)generateBarData:(NSArray *)motions
 {
     BarChartData *d = [[BarChartData alloc] init];
     
     NSMutableArray *entries = [[NSMutableArray alloc] init];
-//    for (int index = 0; index < ITEM_COUNT; index++)
-//    {
-//        [entries addObject:[[BarChartDataEntry alloc] initWithValue:3 xIndex:index]];
-//    }
-    
-    
     NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
     NSMutableArray *minutes2= [[NSMutableArray alloc] init];
     NSInteger min = 0;
     
-    for (int i = 0; i <[sessions count]; i++)
+    for (int i = 0; i <[motions count]; i++)
     {
-//        Session *session = [sessions objectAtIndex:i];
-//        NSInteger val = [session.channel_1 intValue];
-//        
-//        NSInteger seconds = [session.sec intValue];
-//        if(seconds>1800){
-//            seconds = 1700;
-//        }
-//        min = seconds/60;
-//        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-//        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+        Motion *motion = [motions objectAtIndex:i];
+        NSInteger val = [motion.avg_motion intValue];
+        
+        NSInteger seconds = [motion.min intValue];
+        min = seconds/60000;
+        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
+        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
 
     for (int i = 0; i < ITEM_COUNT; i++)
     {
-        for (int j=0;j<10; j++){
+        for (int j=0;j<[motions count]; j++){
             
             if(i == [minutes2[j] intValue]){
-                NSLog(@"I %d Minutes %d",i,[minutes2[j] intValue]);
+                NSLog(@"I %d Bar Minutes %d",i,[minutes2[j] intValue]);
                 [entries addObject:[[BarChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+                
+                //[entries addObject:[[BarChartDataEntry alloc] initWithValue:4 xIndex:i]];
             }
-            else{
-                NSLog(@"Not %d",i);
-            }
-            
         }
     }
 
-    
-    NSLog(@"Entries");
-    BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:entries label:@"Bar DataSet"];
+    BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:entries label:@"Motion"];
     [set setColor:UIColor.orangeColor];
     set.drawValuesEnabled  = NO;
     set.barSpace = 0.5;
     set.barShadowColor = UIColor.clearColor;
     
     set.axisDependency = AxisDependencyLeft;
-    
-    NSLog(@"Char");
     
     [d addDataSet:set];
     
@@ -251,44 +270,38 @@
         NSLog(@"JSON DATA %@",jsonString);
     }
     
-//    [_dispatcher trigger:@"send_session" data:[self eventDataWithString:jsonString] success:^(id data) {
-//        NSLog(@"Success event: %@", data);
-//    } failure:^(id data) {
-//        NSLog(@"Fail event: %@", data);
-//    }];
-//   
-//    [_dispatcher bind:@"send_session" callback:^(id data) {
-//        NSLog(@"send_session %@", data);
-//        
-//        NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
-//        NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
-//        NSLog(@"Arrays %@",values);
-    
-       // NSArray* sessions =[RMMapper arrayOfClass:[Session class] fromArrayOfDictionary:values];
-        
-      //  NSLog(@"sessions %@", sessions);
-        //[self LoadChartView:(NSArray *)sessions];
-    
-    
     [_dispatcher trigger:@"send_session" data:[self eventDataWithString:jsonString] success:^(id data) {
-                NSLog(@"Success event: %@", data);
-            } failure:^(id data) {
-                NSLog(@"Fail event: %@", data);
-            }];
+        
+        NSLog(@"Success event: %@", data);
+    } failure:^(id data) {
+        NSLog(@"Fail event: %@", data);
+    }];
         
     [_dispatcher bind:@"send_session" callback:^(id data) {
         
-         NSLog(@"send_session %@", data);
-                NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
-                NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
-        
-         NSLog(@"send_session Values %@", values);
+        NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *values = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingMutableContainers error:nil];
         
         Session *session =[RMMapper objectWithClass:[Session class] fromDictionary:values];
+        NSLog(@"Success event: %@", values);
+        
+        // Pressure Sets
+        NSArray *pressurearray = [[NSArray alloc] init];
+        NSArray *rmMapperpressurearray = [[NSArray alloc] init];
+        
+        pressurearray = [session.pressure_sets objectForKey:@"pressure_set"];
+        rmMapperpressurearray = [RMMapper arrayOfClass:[Pressure class] fromArrayOfDictionary:pressurearray];
         
         
-        NSLog(@"Session %@",session.pressure_sets);
-        NSLog(@"Session %@",session.motions);
+        // Motions Sets
+        NSArray *motionsarray = [[NSArray alloc] init];
+        NSArray *rmMappermotionsarray = [[NSArray alloc] init];
+        
+        motionsarray = [session.motions objectForKey:@"motion"];
+        rmMappermotionsarray = [RMMapper arrayOfClass:[Motion class] fromArrayOfDictionary:motionsarray];
+        
+        [self LoadChartView:rmMapperpressurearray motion:rmMappermotionsarray];
+        
         
     }];
     

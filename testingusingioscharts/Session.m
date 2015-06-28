@@ -11,5 +11,14 @@
 
 @implementation Session
 
+-(Class)rm_itemClassForArrayProperty:(NSString *)property {
+    if ([property isEqualToString:@"motions"]) {
+        return [Motion class];
+    }
+    else if([property isEqualToString:@"pressure_sets"]) {
+        return [Pressure class];
+    }
+    return nil;
+}
 
 @end
