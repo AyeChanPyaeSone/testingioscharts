@@ -89,7 +89,6 @@
 
 -(void) LoadChartView:(NSArray *)pressures motion:(NSArray *)motions {
     
-    NSLog(@"Load Chart View Sessions %@",pressures);
     NSMutableArray *months =[[NSMutableArray alloc] init];
     
     for (int index = 0; index <= 30; index++)
@@ -103,6 +102,8 @@
     
     _chartView.data = data;
     [_chartView setVisibleXRangeMaximum:20.0];
+    
+    //[_chartView animateWithXAxisDuration:3 easingOption:ChartEasingOptionEaseInCubic];
 }
 
 - (void)didReceiveMemoryWarning
@@ -253,7 +254,9 @@
 -(void) loadSessions {
     
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
-    [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
+   // [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
+    
+    [sessionParam setObject:@"F750DF11-997B-4F9F-80DD-D246EDA51013-889-000002A18FECC964" forKey:@"session_id"];
     [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
     
     NSError *error;
