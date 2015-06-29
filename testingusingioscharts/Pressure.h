@@ -16,4 +16,5 @@
 @property (nonatomic, strong) NSString *channel_1;
 @property (nonatomic, strong) NSString *channel_2;
 @property (nonatomic, strong) NSString *sec;
+@property (nonatomic, strong) NSString *min;
 @end

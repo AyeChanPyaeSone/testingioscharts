@@ -252,7 +252,7 @@
     set1.fillAlpha = 65/255.0;
     set1.fillColor = UIColor.whiteColor;
     set1.highlightColor = UIColor.orangeColor;
-    set1.drawCircleHoleEnabled = NO;
+    set1.drawCircleHoleEnabled = YES;
     set1.drawFilledEnabled = YES;
     
     NSMutableArray *yVals2 = [[NSMutableArray alloc] init];

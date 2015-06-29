@@ -14,6 +14,11 @@
 #define ITEM_COUNT 30
 
 @interface CombinedChartViewController () <ChartViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *label_todayDate;
+@property (weak, nonatomic) IBOutlet UILabel *label_maxPressure;
+@property (weak, nonatomic) IBOutlet UILabel *label_avgPressure;
+
+@property (weak, nonatomic) IBOutlet UIView *gradientview;
 
 @property (nonatomic, strong) IBOutlet CombinedChartView *chartView;
 @property (nonatomic, strong) WebSocketRailsDispatcher *dispatcher;
@@ -28,11 +33,9 @@
     
     self.title = @"Combined Chart";
     
-    _chartView.delegate = self;
-    
     _chartView.descriptionText = @"";
-    _chartView.noDataTextDescription = @"You need to provide data for the chart.";
     
+    _chartView.delegate = self;
     
     _chartView.highlightEnabled = YES;
     _chartView.dragEnabled = YES;
@@ -71,7 +74,6 @@
     leftAxis.startAtZeroEnabled = NO;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
     leftAxis.drawLimitLinesBehindDataEnabled = NO;
-    leftAxis.spaceTop = 3.4;
     
     _chartView.rightAxis.enabled = NO;
     [_chartView setVisibleXRangeMaximum:20.0];
@@ -84,6 +86,20 @@
         NSLog(@"Connected");
     }];
     [_dispatcher connect];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.gradientview.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:244/250. green:133/255. blue:48/255. alpha:1.f] CGColor], (id)[[UIColor colorWithRed:255/255. green:36/255. blue:0/255. alpha:0.8f] CGColor],nil];
+    gradient.startPoint = CGPointMake(0, 0.5);
+    gradient.endPoint = CGPointMake(0, 1);
+    [self.gradientview.layer insertSublayer:gradient atIndex:0];
+    
+    _chartView.backgroundColor = UIColor.clearColor;
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateStyle=kCFDateFormatterMediumStyle;
+    
+    self.label_todayDate.text = [format stringFromDate:[NSDate new]];
    
 }
 
@@ -97,11 +113,28 @@
     }
     
     CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months];
+    
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [dataSets addObject:[self generateLineData:pressures]];
+    [dataSets addObject:[self generateBarData:motions]];
+    
+   // CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months dataSets:dataSets];
+    
     data.lineData = [self generateLineData:pressures];
     data.barData = [self generateBarData:motions];
     
     _chartView.data = data;
+    [_chartView setBorderColor:[UIColor blackColor]];
+    //_chartView.borderColor = [UIColor orangeColor];
+    _chartView.borderLineWidth=1.0f;
     [_chartView setVisibleXRangeMaximum:20.0];
+    self.label_maxPressure.text=@"5";
+    self.label_avgPressure.text=@"3";
+    
+    [_chartView notifyDataSetChanged];
+    
+    
+   
     
     //[_chartView animateWithXAxisDuration:3 easingOption:ChartEasingOptionEaseInCubic];
 }
@@ -124,16 +157,18 @@
     NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
     NSMutableArray *minutes2= [[NSMutableArray alloc] init];
     
+   
     for (int i = 0; i <[pressures count]; i++)
     {
         Pressure *pressure = [pressures objectAtIndex:i];
-        NSInteger val = [pressure.channel_1 intValue];
+        NSInteger val = [pressure.channel_2 intValue];
         
-        NSInteger seconds = [pressure.sec intValue];
-        min = seconds/60000;
+        //NSInteger seconds = [pressure.sec intValue];
+        min = [pressure.min intValue];
         [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
         [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
+    
     
     for (int i = 0; i <= 30; i++)
     {
@@ -146,14 +181,14 @@
     }
     
     LineChartDataSet *set = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
-    [set setColor:[UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f]];
-    set.lineWidth = 2.5;
-    [set setCircleColor:[UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f]];
-    set.fillColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
-    set.drawCubicEnabled = NO;
+    [set setColor:UIColor.whiteColor];
+    set.lineWidth = 1.5;
+    [set setCircleColor:UIColor.whiteColor];
     set.drawValuesEnabled = NO;
     set.valueFont = [UIFont systemFontOfSize:10.f];
     set.circleRadius = 3.0;
+    set.highlightColor = UIColor.whiteColor;
+    set.drawCircleHoleEnabled = YES;
     set.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
     
     set.axisDependency = AxisDependencyLeft;
@@ -169,8 +204,8 @@
         Pressure *pressure = [pressures objectAtIndex:i];
         NSInteger val = [pressure.channel_2 intValue];
         
-        NSInteger seconds = [pressure.sec intValue];
-        min = seconds/60000;
+       // NSInteger seconds = [pressure.sec intValue];
+        min = [pressure.min intValue];
         [secondyvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
         [secondminutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
     }
@@ -181,26 +216,28 @@
             
             if(i == [secondminutes2[j] intValue]){
                 [secondentries addObject:[[ChartDataEntry alloc] initWithValue:[secondyvalues2[j] intValue] xIndex:i]];
+                
             }
         }
     }
     
     LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:secondentries label:@"Body Pressure"];
-    [set2 setColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:1.f]];
-    set2.lineWidth = 2.5;
-    [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:1.f]];
-    set2.fillColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
+    [set2 setColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
+    set2.lineWidth = 1.5;
+    [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
+    set2.fillColor = UIColor.whiteColor;
+    set2.drawCircleHoleEnabled =YES;
     set2.drawCubicEnabled = NO;
     set2.drawValuesEnabled = NO;
     set2.valueFont = [UIFont systemFontOfSize:10.f];
-    set2.circleRadius = 3.0;
+    set2.circleRadius = 2.0;
     set2.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
     
     set2.axisDependency = AxisDependencyLeft;
     
     
     [d addDataSet:set];
-    [d addDataSet:set2];
+    //[d addDataSet:set2];
     
     return d;
 }
@@ -254,9 +291,9 @@
 -(void) loadSessions {
     
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
-   // [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
+    [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
     
-    [sessionParam setObject:@"F750DF11-997B-4F9F-80DD-D246EDA51013-889-000002A18FECC964" forKey:@"session_id"];
+    //[sessionParam setObject:@"303DFA39-0715-43F1-B557-52BEE7A9F1F5-3637-0000088BCC3FFE58" forKey:@"session_id"];
     [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
     
     NSError *error;
