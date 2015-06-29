@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
     self.title = @"Combined Chart";
     
     _chartView.descriptionText = @"";
@@ -87,6 +89,13 @@
     }];
     [_dispatcher connect];
     
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_chartView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0 constant:self.view.bounds.size.width]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gradientview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0 constant:self.view.bounds.size.width]];
+
+    
+    [self.view setNeedsDisplay];
+    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.gradientview.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:244/250. green:133/255. blue:48/255. alpha:1.f] CGColor], (id)[[UIColor colorWithRed:255/255. green:36/255. blue:0/255. alpha:0.8f] CGColor],nil];
@@ -114,25 +123,18 @@
     
     CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months];
     
-    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-    [dataSets addObject:[self generateLineData:pressures]];
-    [dataSets addObject:[self generateBarData:motions]];
-    
-   // CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months dataSets:dataSets];
     
     data.lineData = [self generateLineData:pressures];
     data.barData = [self generateBarData:motions];
     
     _chartView.data = data;
-    [_chartView setBorderColor:[UIColor blackColor]];
-    //_chartView.borderColor = [UIColor orangeColor];
-    _chartView.borderLineWidth=1.0f;
+    
     [_chartView setVisibleXRangeMaximum:20.0];
     self.label_maxPressure.text=@"5";
     self.label_avgPressure.text=@"3";
     
     [_chartView notifyDataSetChanged];
-    
+    [_chartView setNeedsDisplay];
     
    
     
@@ -175,21 +177,16 @@
         for (int j=0;j<[pressures count]; j++){
             
             if(i == [minutes2[j] intValue]){
-                //[entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
-                if(i % 2){
-                    [entries addObject:[[ChartDataEntry alloc] initWithValue:3 xIndex:i]];
-                }
-                else{
-                    [entries addObject:[[ChartDataEntry alloc] initWithValue:5 xIndex:i]];
-                }
-                
+                [entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
             }
         }
     }
     
+
+    
     LineChartDataSet *set = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
     [set setColor:UIColor.whiteColor];
-    set.lineWidth = 1.5;
+    set.lineWidth = 8;
     [set setCircleColor:UIColor.whiteColor];
     set.drawValuesEnabled = NO;
     set.valueFont = [UIFont systemFontOfSize:10.f];
@@ -230,7 +227,7 @@
     
     LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:secondentries label:@"Body Pressure"];
     [set2 setColor:[UIColor colorWithRed:74/255.f green:249/255.f blue:229/255.f alpha:0.8f]];
-    set2.lineWidth = 1.5;
+    set2.lineWidth = 2;
     [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
     set2.fillColor = UIColor.whiteColor;
     set2.drawCircleHoleEnabled =YES;
