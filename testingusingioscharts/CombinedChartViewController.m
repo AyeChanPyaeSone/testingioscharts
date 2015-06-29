@@ -39,7 +39,7 @@
     
     _chartView.highlightEnabled = YES;
     _chartView.dragEnabled = YES;
-    [_chartView setScaleEnabled:NO];
+    [_chartView setScaleEnabled:YES];
     _chartView.drawGridBackgroundEnabled = NO;
     _chartView.pinchZoomEnabled = NO;
     [_chartView setScaleYEnabled:NO];
@@ -175,7 +175,14 @@
         for (int j=0;j<[pressures count]; j++){
             
             if(i == [minutes2[j] intValue]){
-                [entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+                //[entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+                if(i % 2){
+                    [entries addObject:[[ChartDataEntry alloc] initWithValue:3 xIndex:i]];
+                }
+                else{
+                    [entries addObject:[[ChartDataEntry alloc] initWithValue:5 xIndex:i]];
+                }
+                
             }
         }
     }
@@ -186,10 +193,10 @@
     [set setCircleColor:UIColor.whiteColor];
     set.drawValuesEnabled = NO;
     set.valueFont = [UIFont systemFontOfSize:10.f];
-    set.circleRadius = 3.0;
+    set.circleRadius = 2.0;
     set.highlightColor = UIColor.whiteColor;
     set.drawCircleHoleEnabled = YES;
-    set.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
+    set.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:0.8f];
     
     set.axisDependency = AxisDependencyLeft;
     
@@ -222,7 +229,7 @@
     }
     
     LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:secondentries label:@"Body Pressure"];
-    [set2 setColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
+    [set2 setColor:[UIColor colorWithRed:74/255.f green:249/255.f blue:229/255.f alpha:0.8f]];
     set2.lineWidth = 1.5;
     [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
     set2.fillColor = UIColor.whiteColor;
@@ -237,7 +244,7 @@
     
     
     [d addDataSet:set];
-    //[d addDataSet:set2];
+    [d addDataSet:set2];
     
     return d;
 }
@@ -276,7 +283,7 @@
     }
 
     BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:entries label:@"Motion"];
-    [set setColor:UIColor.orangeColor];
+    [set setColor:[UIColor colorWithRed:229/255.f green:221/255.f blue:9/255.f alpha:1.f]];
     set.drawValuesEnabled  = NO;
     set.barSpace = 0.5;
     set.barShadowColor = UIColor.clearColor;
@@ -291,9 +298,9 @@
 -(void) loadSessions {
     
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
-    [sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
+    //[sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
     
-    //[sessionParam setObject:@"303DFA39-0715-43F1-B557-52BEE7A9F1F5-3637-0000088BCC3FFE58" forKey:@"session_id"];
+    [sessionParam setObject:@"303DFA39-0715-43F1-B557-52BEE7A9F1F5-3637-0000088BCC3FFE58" forKey:@"session_id"];
     [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
     
     NSError *error;
