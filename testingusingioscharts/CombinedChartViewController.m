@@ -64,6 +64,7 @@
     xAxis.labelTextColor = UIColor.whiteColor;
     xAxis.drawGridLinesEnabled = NO;
     xAxis.spaceBetweenLabels = 8.0;
+    xAxis.drawLimitLinesBehindDataEnabled = YES;
     
     
     ChartYAxis *leftAxis = _chartView.leftAxis;
@@ -75,10 +76,11 @@
     leftAxis.gridColor = UIColor.whiteColor;
     leftAxis.startAtZeroEnabled = NO;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
-    leftAxis.drawLimitLinesBehindDataEnabled = NO;
+    leftAxis.drawLimitLinesBehindDataEnabled = YES;
+    
     
     _chartView.rightAxis.enabled = NO;
-    [_chartView setVisibleXRangeMaximum:20.0];
+//    [_chartView setVisibleXRangeMaximum:20.0];
     
     _chartView.legend.form = ChartLegendFormLine;
     
@@ -116,7 +118,7 @@
     
     NSMutableArray *months =[[NSMutableArray alloc] init];
     
-    for (int index = 0; index <= 30; index++)
+    for (int index = 0; index <= ITEM_COUNT; index++)
     {
         [months addObject:[NSString stringWithFormat:@"%d",index]];
     }
@@ -149,15 +151,16 @@
 
 - (LineChartData *)generateLineData:(NSArray *)pressures
 {
-    LineChartData *d = [[LineChartData alloc] init];
+    LineChartData *lineChatData = [[LineChartData alloc] init];
     
     NSInteger min = 0;
     
     // Start Line 1
     
+    NSMutableArray *yValues= [[NSMutableArray alloc] init];
+    NSMutableArray *minutes= [[NSMutableArray alloc] init];
     NSMutableArray *entries = [[NSMutableArray alloc] init];
-    NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
-    NSMutableArray *minutes2= [[NSMutableArray alloc] init];
+
     
    
     for (int i = 0; i <[pressures count]; i++)
@@ -167,42 +170,44 @@
         
         //NSInteger seconds = [pressure.sec intValue];
         min = [pressure.min intValue];
-        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+        [yValues addObject:[NSString stringWithFormat:@"%ld",val]];
+        [minutes addObject:[NSString stringWithFormat:@"%ld",min]];
     }
     
     
-    for (int i = 0; i <= 30; i++)
+    for (int i = 0; i <= ITEM_COUNT; i++)
     {
         for (int j=0;j<[pressures count]; j++){
-            
-            if(i == [minutes2[j] intValue]){
-                [entries addObject:[[ChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+            if(i == [minutes[j] intValue]){
+                [entries addObject:[[ChartDataEntry alloc] initWithValue:[yValues[j] intValue] xIndex:i]];
+                break;
             }
         }
     }
     
 
     
-    LineChartDataSet *set = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
-    [set setColor:UIColor.whiteColor];
-    set.lineWidth = 8;
-    [set setCircleColor:UIColor.whiteColor];
-    set.drawValuesEnabled = NO;
-    set.valueFont = [UIFont systemFontOfSize:10.f];
-    set.circleRadius = 2.0;
-    set.highlightColor = UIColor.whiteColor;
-    set.drawCircleHoleEnabled = YES;
-    set.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:0.8f];
+    LineChartDataSet *channelOneLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
+    [channelOneLineChatDataSet setColor:UIColor.whiteColor];
+    channelOneLineChatDataSet.lineWidth = 4
+    ;
+    [channelOneLineChatDataSet setCircleColor:UIColor.whiteColor];
+    channelOneLineChatDataSet.drawValuesEnabled = NO;
+    channelOneLineChatDataSet.valueFont = [UIFont systemFontOfSize:10.f];
+    channelOneLineChatDataSet.circleRadius = 2.0;
+    channelOneLineChatDataSet.drawCubicEnabled = YES;
+    channelOneLineChatDataSet.highlightColor = UIColor.whiteColor;
+    channelOneLineChatDataSet.drawCircleHoleEnabled = YES;
+    channelOneLineChatDataSet.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:0.8f];
     
-    set.axisDependency = AxisDependencyLeft;
+    channelOneLineChatDataSet.axisDependency = AxisDependencyLeft;
     
-    //Start Line 2
-    
-    NSMutableArray *secondentries = [[NSMutableArray alloc] init];
-    NSMutableArray *secondyvalues2= [[NSMutableArray alloc] init];
-    NSMutableArray *secondminutes2= [[NSMutableArray alloc] init];
-    
+//    //Start Line 2
+//    
+        NSMutableArray *secondEntries = [[NSMutableArray alloc] init];
+        NSMutableArray *secondyValues= [[NSMutableArray alloc] init];
+        NSMutableArray *secondMinutes= [[NSMutableArray alloc] init];
+//    
     for (int i = 0; i <[pressures count]; i++)
     {
         Pressure *pressure = [pressures objectAtIndex:i];
@@ -210,40 +215,39 @@
         
        // NSInteger seconds = [pressure.sec intValue];
         min = [pressure.min intValue];
-        [secondyvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [secondminutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
+        [secondyValues addObject:[NSString stringWithFormat:@"%ld",val]];
+        [secondMinutes addObject:[NSString stringWithFormat:@"%ld",min]];
     }
     
-    for (int i = 0; i <= 30; i++)
+
+    for (int index = 0; index <= ITEM_COUNT; index++)
     {
         for (int j=0;j<[pressures count]; j++){
-            
-            if(i == [secondminutes2[j] intValue]){
-                [secondentries addObject:[[ChartDataEntry alloc] initWithValue:[secondyvalues2[j] intValue] xIndex:i]];
-                
+            if(index == [secondMinutes[j] intValue]){
+                [secondEntries addObject:[[ChartDataEntry alloc] initWithValue:[secondyValues[j] intValue] xIndex:index]];
             }
         }
     }
+//
+    LineChartDataSet *channelTwoLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:secondEntries label:@"Body Pressure"];
+    [channelTwoLineChatDataSet setColor:[UIColor colorWithRed:74/255.f green:249/255.f blue:229/255.f alpha:0.8f]];
+    channelTwoLineChatDataSet.lineWidth = 2;
+    [channelTwoLineChatDataSet setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
+    channelTwoLineChatDataSet.fillColor = UIColor.whiteColor;
+    channelTwoLineChatDataSet.drawCircleHoleEnabled =YES;
+    channelTwoLineChatDataSet.drawCubicEnabled = NO;
+    channelTwoLineChatDataSet.drawValuesEnabled = NO;
+    channelTwoLineChatDataSet.valueFont = [UIFont systemFontOfSize:10.f];
+    channelTwoLineChatDataSet.circleRadius = 2.0;
+    channelTwoLineChatDataSet.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
     
-    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:secondentries label:@"Body Pressure"];
-    [set2 setColor:[UIColor colorWithRed:74/255.f green:249/255.f blue:229/255.f alpha:0.8f]];
-    set2.lineWidth = 2;
-    [set2 setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
-    set2.fillColor = UIColor.whiteColor;
-    set2.drawCircleHoleEnabled =YES;
-    set2.drawCubicEnabled = NO;
-    set2.drawValuesEnabled = NO;
-    set2.valueFont = [UIFont systemFontOfSize:10.f];
-    set2.circleRadius = 2.0;
-    set2.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
-    
-    set2.axisDependency = AxisDependencyLeft;
+    channelTwoLineChatDataSet.axisDependency = AxisDependencyLeft;
     
     
-    [d addDataSet:set];
-    [d addDataSet:set2];
+    [lineChatData addDataSet:channelOneLineChatDataSet];
+   [lineChatData addDataSet:channelTwoLineChatDataSet];
     
-    return d;
+    return lineChatData;
 }
 
 - (BarChartData *)generateBarData:(NSArray *)motions
@@ -269,6 +273,7 @@
     for (int i = 0; i < ITEM_COUNT; i++)
     {
         for (int j=0;j<[motions count]; j++){
+            
             
             if(i == [minutes2[j] intValue]){
                 NSLog(@"I %d Bar Minutes %d",i,[minutes2[j] intValue]);
@@ -297,7 +302,7 @@
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
     //[sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
     
-    [sessionParam setObject:@"303DFA39-0715-43F1-B557-52BEE7A9F1F5-3637-0000088BCC3FFE58" forKey:@"session_id"];
+    [sessionParam setObject:@"CE1B25CF-FA5C-4962-84DC-DC5A5D8A3D0B-3637-000008991FA1B7DD" forKey:@"session_id"];
     [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
     
     NSError *error;
