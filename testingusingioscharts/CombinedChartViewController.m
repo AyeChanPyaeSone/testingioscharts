@@ -13,7 +13,8 @@
 
 #define ITEM_COUNT 30
 
-@interface CombinedChartViewController () <ChartViewDelegate>
+@interface CombinedChartViewController () <ChartViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *label_todayDate;
 @property (weak, nonatomic) IBOutlet UILabel *label_maxPressure;
 @property (weak, nonatomic) IBOutlet UILabel *label_avgPressure;
@@ -26,15 +27,27 @@
 @end
 
 @implementation CombinedChartViewController
-
+NSMutableArray *sessionsArr;
+NSString *session_id;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    self.title = @"Combined Chart";
+    self.title = @"Tcould";
     
+     sessionsArr= [[NSMutableArray alloc]init];
+    [sessionsArr addObject:@""];
+    [sessionsArr addObject:@"CE5E3AC7-01F2-4DB2-89B7-0D0A95433843-3637-000008A3C37CD283"];
+    [sessionsArr addObject:@"CE1B25CF-FA5C-4962-84DC-DC5A5D8A3D0B-3637-000008991FA1B7DD"];
+    [sessionsArr addObject:@"303DFA39-0715-43F1-B557-52BEE7A9F1F5-3637-0000088BCC3FFE58"];
+    [sessionsArr addObject:@"A67A0667-DF9C-4D0C-99BC-A263593B779B-2633-000005AFECE0E107"];
+    [sessionsArr addObject:@"F750DF11-997B-4F9F-80DD-D246EDA51013-889-000002A18FECC964"];
+    [sessionsArr addObject:@"FA454011-0234-4A48-A403-90243A5BBADF-889-000002A1855DAFB5"];
+    
+    self.sessionIdPicker.dataSource = self;
+    self.sessionIdPicker.delegate = self;
     _chartView.descriptionText = @"";
     
     _chartView.delegate = self;
@@ -109,7 +122,8 @@
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateStyle=kCFDateFormatterMediumStyle;
-    
+    self.userIdTextField.text = @"kyawmyintthein2020@gmail.com";
+//    self.sessionIdPicker.text = @"9EC287E3-E59C-4733-9401-14F33CF1FFD0-821-0000027AE84E7B63";
     self.label_todayDate.text = [format stringFromDate:[NSDate new]];
    
 }
@@ -230,8 +244,8 @@
     }
 //
     LineChartDataSet *channelTwoLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:secondEntries label:@"Body Pressure"];
-    [channelTwoLineChatDataSet setColor:[UIColor colorWithRed:74/255.f green:249/255.f blue:229/255.f alpha:0.8f]];
-    channelTwoLineChatDataSet.lineWidth = 2;
+    [channelTwoLineChatDataSet setColor:[UIColor redColor]];
+    channelTwoLineChatDataSet.lineWidth = 3;
     [channelTwoLineChatDataSet setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
     channelTwoLineChatDataSet.fillColor = UIColor.whiteColor;
     channelTwoLineChatDataSet.drawCircleHoleEnabled =YES;
@@ -297,13 +311,46 @@
     return d;
 }
 
--(void) loadSessions {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
     
+    return 1;//Or return whatever as you intend
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return sessionsArr.count;//Or, return as suitable for you...normally we use array for dynamic
+}
+
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return sessionsArr[row];//Or, your suitable title; like Choice-a, etc.
+}
+
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    session_id = [sessionsArr objectAtIndex:row];
+}
+
+-(void) loadSessions {
+
+
+   
+}
+
+- (id)eventDataWithString:(NSString *)string
+{
+    return @{@"data": string};
+}
+
+- (IBAction)pressedLoadChartView:(id)sender {
+    [self loadSessions];
+
+}
+- (IBAction)loadSession:(id)sender {
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
     //[sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
-    
-    [sessionParam setObject:@"CE1B25CF-FA5C-4962-84DC-DC5A5D8A3D0B-3637-000008991FA1B7DD" forKey:@"session_id"];
-    [sessionParam setObject:@"kyawmyintthein2020@gmail.com" forKey:@"user_id"];
+    NSString *user_id = self.userIdTextField.text;
+
+    [sessionParam setObject:session_id forKey:@"session_id"];
+    [sessionParam setObject:user_id forKey:@"user_id"];
     
     NSError *error;
     NSString *jsonString ;
@@ -325,7 +372,7 @@
     } failure:^(id data) {
         NSLog(@"Fail event: %@", data);
     }];
-        
+    
     [_dispatcher bind:@"send_session" callback:^(id data) {
         
         NSData* jsondata = [data dataUsingEncoding:NSUTF8StringEncoding];
@@ -353,17 +400,5 @@
         
         
     }];
-    
-   
-}
-
-- (id)eventDataWithString:(NSString *)string
-{
-    return @{@"data": string};
-}
-
-- (IBAction)pressedLoadChartView:(id)sender {
-    [self loadSessions];
-
 }
 @end

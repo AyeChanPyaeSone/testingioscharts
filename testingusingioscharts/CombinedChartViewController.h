@@ -15,5 +15,8 @@
 
 @interface CombinedChartViewController : UIViewController
 - (IBAction)pressedLoadChartView:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *userIdTextField;
+@property (strong, nonatomic) IBOutlet UIPickerView *sessionIdPicker;
+- (IBAction)loadSession:(id)sender;
 
 @end
