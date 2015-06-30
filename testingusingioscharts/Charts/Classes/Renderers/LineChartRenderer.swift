@@ -331,7 +331,6 @@ public class LineChartRenderer: ChartDataRendererBase
             {
                 _lineSegments = [CGPoint](count: max((entries.count - 1) * 2, 2), repeatedValue: CGPoint());
             }
-            
             e1 = entries[minx];
             
             var count = Int(ceil(CGFloat(maxx - minx) * phaseX + CGFloat(minx)));

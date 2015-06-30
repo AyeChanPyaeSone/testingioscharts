@@ -55,11 +55,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJm-D5-a2g">
-                                <rect key="frame" x="0.0" y="211" width="320" height="357"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJm-D5-a2g">
+                                <rect key="frame" x="0.0" y="245" width="320" height="323"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Blood Pressure :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kn4-zs-UP7">
-                                        <rect key="frame" x="8" y="26" width="187" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Maximum Blood Pressure :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kn4-zs-UP7">
+                                        <rect key="frame" x="8" y="17" width="187" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="187" id="13E-p3-JBV"/>
                                         </constraints>
@@ -67,8 +67,8 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1et-KN-RVQ">
-                                        <rect key="frame" x="8" y="50" width="97" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Average :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1et-KN-RVQ">
+                                        <rect key="frame" x="8" y="41" width="97" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="97" id="itY-4l-y2e"/>
                                         </constraints>
@@ -76,8 +76,8 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k0-jd-DX8">
-                                        <rect key="frame" x="224" y="51" width="86" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0k0-jd-DX8">
+                                        <rect key="frame" x="224" y="37" width="86" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="86" id="DuW-8l-OCm"/>
                                         </constraints>
@@ -85,8 +85,8 @@
                                         <color key="textColor" red="1" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-Kw-BlL">
-                                        <rect key="frame" x="139" y="27" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-Kw-BlL">
+                                        <rect key="frame" x="139" y="15" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="6Nf-ge-52f"/>
                                         </constraints>
@@ -94,8 +94,8 @@
                                         <color key="textColor" red="0.78823536630000002" green="0.98039221759999995" blue="0.20392158630000001" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VO2-SD-471">
-                                        <rect key="frame" x="53" y="51" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VO2-SD-471">
+                                        <rect key="frame" x="63" y="41" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="n52-eU-iiM"/>
                                             <constraint firstAttribute="width" constant="42" id="wIc-1j-MXy"/>
@@ -104,8 +104,21 @@
                                         <color key="textColor" red="0.78823536630000002" green="0.98039221759999995" blue="0.20392158630000001" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V9-cf-HP9" customClass="CombinedChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="81" width="320" height="268"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5V9-cf-HP9" customClass="CombinedChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="72" width="320" height="243"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybK-0w-cbg">
+                                                <rect key="frame" x="114" y="213" width="93" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="Remove Data">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="remove:" destination="Tps-Cf-mxr" eventType="touchUpInside" id="tY5-vR-9bF"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.0" alpha="0.62" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -140,7 +153,7 @@
                                 </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENH-yf-WKj">
-                                <rect key="frame" x="0.0" y="94" width="320" height="143"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="162"/>
                                 <connections>
                                     <outlet property="dataSource" destination="u9y-F5-ByX" id="0fW-uZ-5tl"/>
                                     <outlet property="delegate" destination="u9y-F5-ByX" id="JPz-Bz-mQw"/>

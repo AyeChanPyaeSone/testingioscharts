@@ -14,6 +14,7 @@
 #define ITEM_COUNT 30
 
 @interface CombinedChartViewController () <ChartViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate>
+- (IBAction)remove:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *label_todayDate;
 @property (weak, nonatomic) IBOutlet UILabel *label_maxPressure;
@@ -29,6 +30,18 @@
 @implementation CombinedChartViewController
 NSMutableArray *sessionsArr;
 NSString *session_id;
+
+LineChartDataSet *channelTwoLineChatDataSet;
+LineChartDataSet *channelOneLineChatDataSet;
+BarChartDataSet *barChartDataset;
+CombinedChartData *data;
+NSMutableArray *linechartentries;
+NSMutableArray *linechartsecondentries;
+NSMutableArray *barchartentries;
+
+
+int datasetindex;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -113,7 +126,8 @@ NSString *session_id;
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.gradientview.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:244/250. green:133/255. blue:48/255. alpha:1.f] CGColor], (id)[[UIColor colorWithRed:255/255. green:36/255. blue:0/255. alpha:0.8f] CGColor],nil];
+    //gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:244/250. green:133/255. blue:48/255. alpha:1.f] CGColor], (id)[[UIColor colorWithRed:255/255. green:36/255. blue:0/255. alpha:0.8f] CGColor],nil];
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:244/250. green:133/255. blue:48/255. alpha:1.f] CGColor], (id)[[UIColor colorWithRed:251/255. green:181/255. blue:20/255. alpha:0.7f] CGColor],nil];
     gradient.startPoint = CGPointMake(0, 0.5);
     gradient.endPoint = CGPointMake(0, 1);
     [self.gradientview.layer insertSublayer:gradient atIndex:0];
@@ -137,13 +151,15 @@ NSString *session_id;
         [months addObject:[NSString stringWithFormat:@"%d",index]];
     }
     
-    CombinedChartData *data = [[CombinedChartData alloc] initWithXVals:months];
+    data = [[CombinedChartData alloc] initWithXVals:months];
     
     
     data.lineData = [self generateLineData:pressures];
     data.barData = [self generateBarData:motions];
     
     _chartView.data = data;
+    
+    NSLog(@"Data Sets %@",data.dataSets);
     
     [_chartView setVisibleXRangeMaximum:20.0];
     self.label_maxPressure.text=@"5";
@@ -152,9 +168,8 @@ NSString *session_id;
     [_chartView notifyDataSetChanged];
     [_chartView setNeedsDisplay];
     
-   
+   [_chartView animateWithXAxisDuration:2.0 yAxisDuration:2.0];
     
-    //[_chartView animateWithXAxisDuration:3 easingOption:ChartEasingOptionEaseInCubic];
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,6 +178,104 @@ NSString *session_id;
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void) removeData{
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Toggle Data" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Toggle Line Data",
+                            @"Toggle Line Body Pressure Data",
+                            @"Toggle Bar Chart Data",
+                            nil];
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    switch (buttonIndex) {
+        case 0:
+            [self toggleData:0];
+            break;
+        case 1:
+            [self toggleData:1];
+            break;
+        case 2:
+            [self toggleData:2];
+            break;
+        default:
+            break;
+    }
+}
+-(void) toggleData:(int) index{
+
+    
+    if(index ==0){
+        datasetindex=(int)[data indexOfDataSet:channelOneLineChatDataSet];
+        
+        if(datasetindex>=0){
+            for (int i=0; i<[linechartentries count]; i++) {
+                
+                [data removeEntryByXIndex:i dataSetIndex:datasetindex];
+            }
+            [data removeDataSet:channelOneLineChatDataSet];
+        }
+        else{
+            [data addDataSet:channelOneLineChatDataSet];
+            for (int i = 0; i < [linechartentries count]; i++)
+            {
+                ChartDataEntry * linechart= linechartentries[i];
+                [data addEntry:linechart dataSetIndex:[data dataSetCount]-1];
+            }
+        }
+    }
+    else if(index ==1){
+        datasetindex=(int)[data indexOfDataSet:channelTwoLineChatDataSet];
+        
+        if(datasetindex>=0){
+            for (int i=0; i<[linechartsecondentries count]; i++) {
+                
+                [data removeEntryByXIndex:i dataSetIndex:datasetindex];
+            }
+            [data removeDataSet:channelTwoLineChatDataSet];
+        }
+        else{
+            [data addDataSet:channelTwoLineChatDataSet];
+            for (int i = 0; i < [linechartsecondentries count]; i++)
+            {
+                ChartDataEntry * linechart= linechartsecondentries[i];
+                [data addEntry:linechart dataSetIndex:[data dataSetCount]-1];
+            }
+        }
+
+    }
+    else{
+        datasetindex=(int)[data indexOfDataSet:barChartDataset];
+        if(datasetindex>=0){
+            
+            for (int i=0; i<[barchartentries count]; i++) {
+                [data removeEntryByXIndex:i dataSetIndex:datasetindex];
+            }
+            [data removeDataSet:barChartDataset];
+        }
+        else{
+            
+            [data addDataSet:barChartDataset];
+            for (int i = 0; i < [barchartentries count]; i++)
+            {
+                ChartDataEntry * linechart= barchartentries[i];
+                [data addEntry:linechart dataSetIndex:[data dataSetCount]-1];
+            }
+        }
+    }
+    NSLog(@"data %@",[data dataSets]);
+    
+    _chartView.data = data;
+    [_chartView notifyDataSetChanged];
+    [_chartView setNeedsDisplay];
+    [_chartView setNeedsLayout];
+    
+    [_chartView animateWithXAxisDuration:3.0 yAxisDuration:3.0];
+}
 - (LineChartData *)generateLineData:(NSArray *)pressures
 {
     LineChartData *lineChatData = [[LineChartData alloc] init];
@@ -173,10 +286,8 @@ NSString *session_id;
     
     NSMutableArray *yValues= [[NSMutableArray alloc] init];
     NSMutableArray *minutes= [[NSMutableArray alloc] init];
-    NSMutableArray *entries = [[NSMutableArray alloc] init];
+    linechartentries = [[NSMutableArray alloc] init];
 
-    
-   
     for (int i = 0; i <[pressures count]; i++)
     {
         Pressure *pressure = [pressures objectAtIndex:i];
@@ -193,7 +304,7 @@ NSString *session_id;
     {
         for (int j=0;j<[pressures count]; j++){
             if(i == [minutes[j] intValue]){
-                [entries addObject:[[ChartDataEntry alloc] initWithValue:[yValues[j] intValue] xIndex:i]];
+                [linechartentries addObject:[[ChartDataEntry alloc] initWithValue:[yValues[j] intValue] xIndex:i]];
                 break;
             }
         }
@@ -201,26 +312,26 @@ NSString *session_id;
     
 
     
-    LineChartDataSet *channelOneLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:entries label:@"Abdominal Pressure"];
-    [channelOneLineChatDataSet setColor:UIColor.whiteColor];
-    channelOneLineChatDataSet.lineWidth = 4
-    ;
-    [channelOneLineChatDataSet setCircleColor:UIColor.whiteColor];
+    channelOneLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:linechartentries label:@"Abdominal Pressure"];
+    [channelOneLineChatDataSet setColor:[UIColor colorWithRed:108/255. green:106/255. blue:203/255. alpha:0.8f]];
+    channelOneLineChatDataSet.lineWidth = 8;
+    [channelOneLineChatDataSet setCircleColor:UIColor.yellowColor];
     channelOneLineChatDataSet.drawValuesEnabled = NO;
     channelOneLineChatDataSet.valueFont = [UIFont systemFontOfSize:10.f];
     channelOneLineChatDataSet.circleRadius = 2.0;
-    channelOneLineChatDataSet.drawCubicEnabled = YES;
+    channelOneLineChatDataSet.drawCubicEnabled = NO;
     channelOneLineChatDataSet.highlightColor = UIColor.whiteColor;
     channelOneLineChatDataSet.drawCircleHoleEnabled = YES;
+    channelOneLineChatDataSet.drawCirclesEnabled = NO;
     channelOneLineChatDataSet.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:0.8f];
     
     channelOneLineChatDataSet.axisDependency = AxisDependencyLeft;
     
 //    //Start Line 2
 //    
-        NSMutableArray *secondEntries = [[NSMutableArray alloc] init];
-        NSMutableArray *secondyValues= [[NSMutableArray alloc] init];
-        NSMutableArray *secondMinutes= [[NSMutableArray alloc] init];
+        linechartsecondentries = [[NSMutableArray alloc] init];
+    NSMutableArray *secondyValues= [[NSMutableArray alloc] init];
+    NSMutableArray *secondMinutes= [[NSMutableArray alloc] init];
 //    
     for (int i = 0; i <[pressures count]; i++)
     {
@@ -238,37 +349,41 @@ NSString *session_id;
     {
         for (int j=0;j<[pressures count]; j++){
             if(index == [secondMinutes[j] intValue]){
-                [secondEntries addObject:[[ChartDataEntry alloc] initWithValue:[secondyValues[j] intValue] xIndex:index]];
+                [linechartsecondentries addObject:[[ChartDataEntry alloc] initWithValue:[secondyValues[j] intValue] xIndex:index]];
             }
         }
     }
 //
-    LineChartDataSet *channelTwoLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:secondEntries label:@"Body Pressure"];
-    [channelTwoLineChatDataSet setColor:[UIColor redColor]];
-    channelTwoLineChatDataSet.lineWidth = 3;
+   channelTwoLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:linechartsecondentries label:@"Body Pressure"];
+    [channelTwoLineChatDataSet setColor:[UIColor colorWithRed:142/255.f green:220/255.f blue:157/255.f alpha:1.f]];
+    channelTwoLineChatDataSet.lineWidth = 2;
     [channelTwoLineChatDataSet setCircleColor:[UIColor colorWithRed:51/255.f green:90/255.f blue:150/255.f alpha:0.5f]];
     channelTwoLineChatDataSet.fillColor = UIColor.whiteColor;
     channelTwoLineChatDataSet.drawCircleHoleEnabled =YES;
     channelTwoLineChatDataSet.drawCubicEnabled = NO;
     channelTwoLineChatDataSet.drawValuesEnabled = NO;
+    channelTwoLineChatDataSet.drawCirclesEnabled = NO;
     channelTwoLineChatDataSet.valueFont = [UIFont systemFontOfSize:10.f];
     channelTwoLineChatDataSet.circleRadius = 2.0;
     channelTwoLineChatDataSet.valueTextColor = [UIColor colorWithRed:240/255.f green:238/255.f blue:70/255.f alpha:1.f];
     
     channelTwoLineChatDataSet.axisDependency = AxisDependencyLeft;
-    
+    channelTwoLineChatDataSet.lineDashLengths = @[@5.f, @2.f];
     
     [lineChatData addDataSet:channelOneLineChatDataSet];
    [lineChatData addDataSet:channelTwoLineChatDataSet];
     
+    
+
     return lineChatData;
 }
+
 
 - (BarChartData *)generateBarData:(NSArray *)motions
 {
     BarChartData *d = [[BarChartData alloc] init];
     
-    NSMutableArray *entries = [[NSMutableArray alloc] init];
+    barchartentries = [[NSMutableArray alloc] init];
     NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
     NSMutableArray *minutes2= [[NSMutableArray alloc] init];
     NSInteger min = 0;
@@ -291,22 +406,22 @@ NSString *session_id;
             
             if(i == [minutes2[j] intValue]){
                 NSLog(@"I %d Bar Minutes %d",i,[minutes2[j] intValue]);
-                [entries addObject:[[BarChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
+                [barchartentries addObject:[[BarChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
                 
                 //[entries addObject:[[BarChartDataEntry alloc] initWithValue:4 xIndex:i]];
             }
         }
     }
 
-    BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:entries label:@"Motion"];
-    [set setColor:[UIColor colorWithRed:229/255.f green:221/255.f blue:9/255.f alpha:1.f]];
-    set.drawValuesEnabled  = NO;
-    set.barSpace = 0.5;
-    set.barShadowColor = UIColor.clearColor;
+    barChartDataset = [[BarChartDataSet alloc] initWithYVals:barchartentries label:@"Motion"];
+    [barChartDataset setColor:[UIColor colorWithRed:249/255.f green:229/255.f blue:89/255.f alpha:1.f]];
+    barChartDataset.drawValuesEnabled  = NO;
+    barChartDataset.barSpace = 0.5;
+    barChartDataset.barShadowColor = UIColor.clearColor;
     
-    set.axisDependency = AxisDependencyLeft;
+    barChartDataset.axisDependency = AxisDependencyLeft;
     
-    [d addDataSet:set];
+    [d addDataSet:barChartDataset];
     
     return d;
 }
@@ -329,21 +444,12 @@ NSString *session_id;
     session_id = [sessionsArr objectAtIndex:row];
 }
 
--(void) loadSessions {
-
-
-   
-}
 
 - (id)eventDataWithString:(NSString *)string
 {
     return @{@"data": string};
 }
 
-- (IBAction)pressedLoadChartView:(id)sender {
-    [self loadSessions];
-
-}
 - (IBAction)loadSession:(id)sender {
     NSMutableDictionary *sessionParam = [[NSMutableDictionary alloc]init];
     //[sessionParam setObject:@"E727B27E-F7D8-4135-A93A-CDE6AE09286E-821-000002895A92A69F" forKey:@"session_id"];
@@ -400,5 +506,8 @@ NSString *session_id;
         
         
     }];
+}
+- (IBAction)remove:(id)sender {
+    [self removeData];
 }
 @end
