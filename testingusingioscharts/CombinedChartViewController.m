@@ -262,8 +262,8 @@ int datasetindex;
             [data addDataSet:barChartDataset];
             for (int i = 0; i < [barchartentries count]; i++)
             {
-                ChartDataEntry * linechart= barchartentries[i];
-                [data addEntry:linechart dataSetIndex:[data dataSetCount]-1];
+                ChartDataEntry * barchart= barchartentries[i];
+                [data addEntry:barchart dataSetIndex:[data dataSetCount]-1];
             }
         }
     }
@@ -295,22 +295,8 @@ int datasetindex;
         
         //NSInteger seconds = [pressure.sec intValue];
         min = [pressure.min intValue];
-        [yValues addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes addObject:[NSString stringWithFormat:@"%ld",min]];
+        [linechartentries addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
-    
-    
-    for (int i = 0; i <= ITEM_COUNT; i++)
-    {
-        for (int j=0;j<[pressures count]; j++){
-            if(i == [minutes[j] intValue]){
-                [linechartentries addObject:[[ChartDataEntry alloc] initWithValue:[yValues[j] intValue] xIndex:i]];
-                break;
-            }
-        }
-    }
-    
-
     
     channelOneLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:linechartentries label:@"Abdominal Pressure"];
     [channelOneLineChatDataSet setColor:[UIColor colorWithRed:108/255. green:106/255. blue:203/255. alpha:0.8f]];
@@ -327,12 +313,10 @@ int datasetindex;
     
     channelOneLineChatDataSet.axisDependency = AxisDependencyLeft;
     
-//    //Start Line 2
-//    
-        linechartsecondentries = [[NSMutableArray alloc] init];
-    NSMutableArray *secondyValues= [[NSMutableArray alloc] init];
-    NSMutableArray *secondMinutes= [[NSMutableArray alloc] init];
-//    
+    //Start Line 2
+    
+    linechartsecondentries = [[NSMutableArray alloc] init];
+    
     for (int i = 0; i <[pressures count]; i++)
     {
         Pressure *pressure = [pressures objectAtIndex:i];
@@ -340,20 +324,9 @@ int datasetindex;
         
        // NSInteger seconds = [pressure.sec intValue];
         min = [pressure.min intValue];
-        [secondyValues addObject:[NSString stringWithFormat:@"%ld",val]];
-        [secondMinutes addObject:[NSString stringWithFormat:@"%ld",min]];
+         [linechartsecondentries addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-
-    for (int index = 0; index <= ITEM_COUNT; index++)
-    {
-        for (int j=0;j<[pressures count]; j++){
-            if(index == [secondMinutes[j] intValue]){
-                [linechartsecondentries addObject:[[ChartDataEntry alloc] initWithValue:[secondyValues[j] intValue] xIndex:index]];
-            }
-        }
-    }
-//
    channelTwoLineChatDataSet = [[LineChartDataSet alloc] initWithYVals:linechartsecondentries label:@"Body Pressure"];
     [channelTwoLineChatDataSet setColor:[UIColor colorWithRed:142/255.f green:220/255.f blue:157/255.f alpha:1.f]];
     channelTwoLineChatDataSet.lineWidth = 2;
@@ -384,9 +357,7 @@ int datasetindex;
     BarChartData *d = [[BarChartData alloc] init];
     
     barchartentries = [[NSMutableArray alloc] init];
-    NSMutableArray *yvalues2= [[NSMutableArray alloc] init];
-    NSMutableArray *minutes2= [[NSMutableArray alloc] init];
-    NSInteger min = 0;
+    int min = 0;
     
     for (int i = 0; i <[motions count]; i++)
     {
@@ -394,23 +365,11 @@ int datasetindex;
         NSInteger val = [motion.avg_motion intValue];
         
         NSInteger seconds = [motion.min intValue];
-        min = seconds/60000;
-        [yvalues2 addObject:[NSString stringWithFormat:@"%ld",val]];
-        [minutes2 addObject:[NSString stringWithFormat:@"%ld",min]];
-    }
-
-    for (int i = 0; i < ITEM_COUNT; i++)
-    {
-        for (int j=0;j<[motions count]; j++){
-            
-            
-            if(i == [minutes2[j] intValue]){
-                NSLog(@"I %d Bar Minutes %d",i,[minutes2[j] intValue]);
-                [barchartentries addObject:[[BarChartDataEntry alloc] initWithValue:[yvalues2[j] intValue] xIndex:i]];
-                
-                //[entries addObject:[[BarChartDataEntry alloc] initWithValue:4 xIndex:i]];
-            }
+        min = (int) seconds/60000;
+        for (int j=min-5; j<=min; j++) {
+             [barchartentries addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:j]];
         }
+       
     }
 
     barChartDataset = [[BarChartDataSet alloc] initWithYVals:barchartentries label:@"Motion"];
